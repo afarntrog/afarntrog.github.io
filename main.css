@@ -1,0 +1,16 @@
+.card-img-top {
+    position: absolute;
+    top: -75px; /*Must be around half image hight*/
+    left: 50%;
+    margin-left: -75px;/*Must be half image hight*/
+    /* width: 60px !important;
+    height: 60px; */
+    width: 150px !important;
+    height: 150px;
+  }
+  
+  .profile-card {
+    margin-top: 100px;
+    padding-top: 70px;
+  }
+
