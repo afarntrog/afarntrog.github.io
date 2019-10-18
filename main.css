@@ -14,3 +14,8 @@
     padding-top: 70px;
   }
 
+  [aria-expanded="false"] > .expanded,
+  [aria-expanded="true"] > .collapsed {
+    display: none;
+  }
+  

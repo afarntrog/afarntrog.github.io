@@ -47,7 +47,10 @@
                             <strong>Othello-CLI</strong> 
                         </div>
                         <div class="card-body">
+                            <p>
                                 Othello CLI is an Othello game written in Java for the command line. See if you can beat it!
+                            </p>
+                            
                             <hr>
         
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >Java</span></span>
@@ -69,7 +72,35 @@
                             <strong>Difficilis</strong> 
                         </div>
                         <div class="card-body">
-                            Difficilis is a platform where users can enter their dilemma and make better decisions. Users can also find inspiration by searching through dilemmas and decisions shared by other users. Additionally, users can interact by sharing their dilemmas publicly and by voting on other public dilemmas.
+                            <p>
+                                Difficilis is a platform where users can enter their dilemma and make better decisions. 
+                            
+                            <!--Display more or less words-->
+                            <span class="collapse" id="block-id">
+                                    Users can also find inspiration by searching through dilemmas and decisions shared by other users. 
+                                    Additionally, users can interact by sharing their dilemmas publicly and by voting on other public dilemmas.
+                            </span>
+                        </p>
+
+                                  
+                            <!-- aria-expanded attribute is mandatory -->
+                            <!-- bootstrap changes it to true/false on toggle -->
+                            <a href="#block-id"
+                                class="btn btn-outline-info"
+                                data-toggle="collapse"
+                                aria-expanded="false"
+                                aria-controls="block-id">
+                            
+                                <span class="collapsed">
+                                Show more
+                                </span>
+                                <span class="expanded">
+                                Show Less
+                                </span>
+                            
+                            </a>                         
+                            
+                            
                             <hr>
         
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >HTML</span></span>
@@ -145,8 +176,33 @@
                                     <strong>Searchable Classifieds</strong> 
                                 </div>
                                 <div class="card-body">
+                                    <p>
                                         This webapp scrapes JPEG images from my local newspapers classifieds job posts. It then converts the JPEG to text using OCR.
-                                        I then displayed them in a nice format and added search to the app. So now you can easily find jobs with your desired keywords.
+                                    
+                                        <!--Display more or less words-->
+                                        <span class="collapse" id="Searchable">
+                                            I then displayed them in a nice format and added search to the app. So now you can easily find jobs with your desired keywords.
+                                        </span>
+                                    </p>
+
+                                            
+                                        <!-- aria-expanded attribute is mandatory -->
+                                        <!-- bootstrap changes it to true/false on toggle -->
+                                        <a href="#Searchable"
+                                            class="btn btn-outline-info"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            aria-controls="block-id">
+                                        
+                                            <span class="collapsed">
+                                            Show more
+                                            </span>
+                                            <span class="expanded">
+                                            Show Less
+                                            </span>
+                                        
+                                        </a>                                    
+                                    
                                     <hr>
                                     <span class="badge badge-pill badge-info mb-1"><span class="h6" >HTML</span></span>
                                     <span class="badge badge-pill badge-info mb-1"><span class="h6" >CSS</span></span>
@@ -168,6 +224,10 @@
 
             </div> <!--End Row-->
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
 </body>
 </html>
