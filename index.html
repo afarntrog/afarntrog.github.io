@@ -35,7 +35,7 @@
         </div>
         <br>
         <br>
-        <div class="text-center" ><i class="btn text-muted" onclick="myFunction()" id="bye">Dark 🌒 mode</i></div>
+        <div class="text-center" ><i class="btn text-muted" onclick="darkModeToggle()" id="bye">Dark 🌒 mode</i></div>
         <br>
 
 
@@ -45,24 +45,26 @@
                 <div class="col-sm-4 py-2">
                     <div class="card mb-3 bg-light" style="max-width: 20rem;">
                         <div class="card-header text-center">
-                            <strong>Othello-CLI</strong> 
+                            <strong>Java-Board-Games</strong> 
                         </div>
                         <div class="card-body">
                             <p>
-                                Othello CLI is an Othello game written in Java for the command line. See if you can beat it!
+                                Java-Board-Games is a repository of different classic board games I built with Java. 
+                                See how I implemented Othello or how I created a Sudoku solver using the Backtracking approach.
                             </p>
                             
                             <hr>
         
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >Java</span></span>
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >IntelliJ</span></span>
+                            <span class="badge badge-pill badge-info mb-1"><span class="h6" >Backtracking</span></span>
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >Git</span></span>
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >Github</span></span>
                             <span class="badge badge-pill badge-info mb-1"><span class="h6" >Linux</span></span>
                         </div>
                         <div class="card-footer">
-                            <a href="https://github.com/afarntrog/othello-cli" target="_blank" class="btn btn-block btn-outline-info">View Project</a>
-                            <a href="https://github.com/afarntrog/othello-cli" target="_blank" class="btn btn-block btn-outline-info">View Code</a>
+                            <a href="https://github.com/afarntrog/java-board-games" target="_blank" class="btn btn-block btn-outline-info">View Project</a>
+                            <a href="https://github.com/afarntrog/java-board-games" target="_blank" class="btn btn-block btn-outline-info">View Code</a>
                         </div>
                     </div>
                 </div>
@@ -254,7 +256,7 @@
 <!-- Dark mode 🌙 🌒-->
 <script>
     var toggle = false;
-    function myFunction() {
+    function darkModeToggle() {
     toggle ? DarkReader.disable() : DarkReader.enable({brightness: 100, contrast: 90,sepia: 10});
     toggle = !toggle;
     if (document.getElementById("bye").innerHTML == "Light 💡 mode"){
