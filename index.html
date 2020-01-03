@@ -319,15 +319,18 @@
 
 <!-- This will get and display the ip of a visitor -->
 <script>
-    function setFormValue(visitorIp) {
-        var currentTime = new Date().toDateString();
-        $.ajax({
-            url: "//formspree.io/mjvgzwqv", 
-            method: "POST",
-            data: {message: "You have a visitor at: " + currentTime + " with an ip of: " + visitorIp},
-            dataType: "json"
-        }); 
-    };
+    // Can only use formspree Ajax when upgrade plan
+    // function setFormValue(visitorIp) {
+    //     var currentTime = new Date().toDateString();
+    //     $.ajax({
+    //         url: "//formspree.io/mjvgzwqv", 
+    //         method: "POST",
+    //         data: {message: "You have a visitor at: " + currentTime + " with an ip of: " + visitorIp},
+    //         dataType: "json"
+    //     }); 
+    // };
+
+
     $(document).ready(function () {
         var visitorIp;
         // 1) Get visitors IP from CloudFlare
@@ -337,7 +340,6 @@
 
             // 2) Display Greeting to visitor
             $('#msgs').html("<div class='alert alert-success text-center container alert-dismissible'><strong>Welcome! it's nice to see you, </strong> " + '<a href="https://www.google.com/search?q=myIp">'+ visitorIp +'</a>' + "</div>");
-            setFormValue(visitorIp);
             // 3) Auto fade Greeting away after
             $(".alert-dismissible").fadeTo(7000, 500).slideUp(500, function(){
                 $(".alert-dismissible").alert('close');
