@@ -323,7 +323,8 @@
     // function setFormValue(visitorIp) {
     //     var currentTime = new Date().toDateString();
     //     $.ajax({
-    //         url: "//formspree.io/mjvgzwqv", 
+    //         url: "https://formspree.io/mjvgzwqv", 
+    //         crossDomain: true,
     //         method: "POST",
     //         data: {message: "You have a visitor at: " + currentTime + " with an ip of: " + visitorIp},
     //         dataType: "json"
@@ -344,6 +345,7 @@
             $(".alert-dismissible").fadeTo(7000, 500).slideUp(500, function(){
                 $(".alert-dismissible").alert('close');
             });
+            // setFormValue(visitorIp); //Can oonly send this ajax form when upgrade plan.
         })
     });
     </script>  
