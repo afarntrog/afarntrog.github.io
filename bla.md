@@ -99,7 +99,7 @@ note we don't need to use Math.abs like in the brute force solution. This is bec
  same applies just in reverse when checking if (ceil - nums[i]) is in the BST.
  
 
-```R
+```java
 class Solution {
         public static boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
 
