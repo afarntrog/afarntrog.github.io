@@ -1,8 +1,28 @@
 ---
 layout: post
-title: Blogging Like a Hacker
+title: Leetcode Contains Duplicate 3 - 3 Solutions.
 ---
-## Brute force solution
+
+
+
+### [220. Contains Duplicate III](https://leetcode.com/problems/contains-duplicate-iii/)
+
+
+Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k.
+
+ 
+
+Example 1:
+
+```
+Input: nums = [1,2,3,1], k = 3, t = 0
+Output: true
+```
+---
+
+Let's try the easy solution first.
+
+## 1. Brute force solution
 
 This is definitely the simplest way to solve it but the most inefficient. We can simply create a nested `for loop` and check each value in the array against every other value
 in the array. At each iteration we check if:
@@ -35,7 +55,7 @@ We can do much better with the next solution.
 
 
 
-## Sliding window solution
+## 2. Sliding window solution
 
 We will keep a small window of size k and check those k elements if there contains the correct value. 
 The elements will be stored in a BST for O(log k) lookup.
@@ -88,7 +108,7 @@ Our `treeSet` currently looks like this:
 Notice that our `treeSet` is larger than `k`! So we **remove** the `i - k` element, or the oldest added one.
 Our updated `treeSet` currently looks like this:
 
-![treeImage](Contains_Duplicate_3/tree-5-7.png)
+ ![treeImage](Contains_Duplicate_3/tree-5-7.png)
  
 now `val` is 8. `floor` is 7 and `ceil` is again `null`. Since `8 - 7 is 1` this is `<= t` so we `return true` and we're done.
 
@@ -131,3 +151,63 @@ class Solution {
  
  
 O(n log k) is certainly better than O(n^2), however, can we do better? Well, yes. We can solve this in O(n) using Buckets.
+
+## 3. Bucket solution:
+
+The general idea is to create buckets of values that are within t range.
+The code below is well commented and variables are well named. Although the concept may be difficult this code should be easy to read and understand.
+
+
+```java
+class Solution {
+    public static boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        // There cannot be a negative absolute distance.
+        if (t < 0) return false;    
+
+        Map<Long, Long> buckets = new HashMap<>();
+
+        // we add 1 to avoid the case where t == 0. 
+        // Because if t == 0 then we will get "ArithmeticException: / by zero" Exception when dividing by t later on when we get bucketID.
+        long bucketWidth = (long)t + 1; 
+
+        for (int i = 0; i < nums.length; i++) {
+            long currNum = (long) nums[i] - Integer.MIN_VALUE;   // we must start the "base" from Integer.MIN_VALUE so that we can handle negative numbers. Do not focus on this right now.
+            long bucketID = currNum / bucketWidth;  // This will tell us which bucket to place the currNum into. 
+
+            // Each "bucket" will only ever have one value (unlike bucket sort)
+            // if **this** value is already in the bucket than we know that currNum is definitely within t distance of bucketNum 
+            // additionally, if it is in the bucket then it is within k index range. so we found a match.
+            if (buckets.containsKey(bucketID))
+                return true;
+
+            // Next 2 `if` checks explained: 
+            // Some numbers with differences less than `t` __may__ be put into different buckets. In such cases, however, they can **only** be in **immediate** neighboring buckets.
+
+            // if there is a bucket to the **immediate** left then check to see if that value in that bucket is within "absolute difference" distance (t) from the current value
+            if (buckets.containsKey(bucketID - 1) && Math.abs(currNum - buckets.get(bucketID - 1)) < bucketWidth)
+                return true;
+
+            // if there is a bucket to the **immediate** right then check to see if that value in that bucket is within "absolute difference" distance (t) from the current value
+            if (buckets.containsKey(bucketID + 1) && Math.abs(currNum - buckets.get(bucketID + 1)) < bucketWidth)
+                return true;
+
+            // add currNum to our buckets.
+            buckets.put(bucketID, currNum);
+
+            // Remove the element that is not within k index distance:
+            // if i >= k then we do not want to be looking at this value anymore since it is out of index range (k) so we will remove it. 
+            // We are getting the bucketID like we did earlier. Just we are doing i - k so that we get the element that is k distance from the current one, since that's the one out of range.
+            if (i >= k) {
+                long furthestNumBucketID = ((long) nums[i-k] - Integer.MIN_VALUE) / bucketWidth;
+                buckets.remove(furthestNumBucketID);
+            }
+        }
+        return false;
+    }
+}
+```
+
+This solution has a time complexity of O(n). Since we only iterate through the array at max once and the lookup and inserts into the HashMap (`buckets`) is constant time O(1).
+
+We covered 3 solutions. We did a brute force that runs in O(n^2) we then covered Sliding window solution that uses a BST that runs in (n log k) time and we finished with
+the Bucket solution that runs in O(n) time. The more efficient they are the more complex they are...
