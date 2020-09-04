@@ -69,8 +69,8 @@ We will loop over the array and check all the values, that have an index that is
 absolute difference from the current value that is `<= t` we will `return true`.
 
 For each value in the array we do the following:
-1) Get the closest value that is smaller than this current value. So in the above tree treeSet.floor(val) would return 9
-2) Get the closest value that is larger than this current value. So in the above tree treeSet.floor(val) would return 12
+1) Get the closest value that is smaller than this current value.
+2) Get the closest value that is larger than this current value.
 
 This essentially searches in both directions of the array. Remember, we are only searching within the `k` bound. Our tree will **never** exceed k nodes. Because we only
 want to look at values to the left and right of the current value if those values have an `index <= k`.
