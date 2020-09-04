@@ -1,3 +1,7 @@
+---
+layout: post
+title: Blogging Like a Hacker
+---
 ## Brute force solution
 
 This is definitely the simplest way to solve it but the most inefficient. We can simply create a nested `for loop` and check each value in the array against every other value
