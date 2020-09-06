@@ -27,7 +27,7 @@ A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits 
 ---
 
 ### Brute force - first thought. 
-This is **Terrible** solution but I am writing it here because it was my first thought. You should probably skip to bottom solution.
+This is a **terrible** solution but I am writing it here because it was my first thought. You should probably skip to bottom solution.
 
 The general idea:
 
@@ -107,7 +107,7 @@ class Solution {
 
 ### Greedy solution - O(n)
 
-This table should be referenced when reading the solution.
+This table (that shows the input string as an array) should be referenced when reading the solution.
 
 a | b | a | b | c | b | a | c | a | d | e  | f  | e  | g  | d  | e  | h  | i  | j  | h  | k  | l  | i  | j  | 
   --- |   --- |   --- |   --- |   --- |   --- |   --- |   --- |   --- |   --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- | 
