@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Leetcode Contains Duplicate 3 - 3 Solutions.
+title: Leetcode Partition Labels - 2 Solutions.
 ---
 
 
