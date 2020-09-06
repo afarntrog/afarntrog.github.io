@@ -14,7 +14,8 @@ A string S of lowercase English letters is given. We want to partition this stri
 
 Example 1:
 
-```Input: S = "ababcbacadefegdehijhklij"
+```
+Input: S = "ababcbacadefegdehijhklij"
 Output: [9,7,8]
 Explanation:
 The partition is "ababcbaca", "defegde", "hijhklij".
