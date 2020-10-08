@@ -1,0 +1,200 @@
+I"fN<h3 id="763-partition-labels"><a href="https://leetcode.com/problems/partition-labels/">763. Partition Labels</a></h3>
+
+<p>A string S of lowercase English letters is given. We want to partition this string into as many parts as possible so that each letter appears in at most one part, and return a list of integers representing the size of these parts.</p>
+
+<p>Example 1:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: S = "ababcbacadefegdehijhklij"
+Output: [9,7,8]
+Explanation:
+The partition is "ababcbaca", "defegde", "hijhklij".
+This is a partition so that each letter appears in at most one part.
+A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits S into less parts.
+</code></pre></div></div>
+
+<hr />
+<hr />
+
+<h3 id="brute-force---first-thought">Brute force - first thought.</h3>
+<p>This is a <strong>terrible</strong> solution but I am writing it here because it was my first thought. You should probably skip to bottom solution.</p>
+
+<p>The general idea:</p>
+
+<p>You begin by finding the last occurrence of the first letter in the original string.
+   Then partition the string by that last occurrence. You should now have two strings: a left partition, and a right partition.
+   Let us handle the left partition. Although you found the last occurrence of the first letter, the left partition may contain other letters that are <strong>also</strong> in the right half.
+   So we must <strong>expand</strong> our left string to include those letters. 
+   After we partition the left side, we add all of the <code class="language-plaintext highlighter-rouge">leftString</code> chars into the <code class="language-plaintext highlighter-rouge">charSet</code>.
+   This allows us to loop over the set and for each letter in the set we will <strong>again</strong> find that last occurrence and then partition the string.
+   <strong>If</strong> this new partition is larger than our <code class="language-plaintext highlighter-rouge">leftString</code> then that means we must <strong>expand</strong> the left partition. So we <strong>update</strong> our left partition.
+   However, now there is a new problem: if we expand the left partition we may <strong>introduce</strong> a new letter that was <strong>not</strong> in the original <code class="language-plaintext highlighter-rouge">leftString</code> and therefore not in the current <code class="language-plaintext highlighter-rouge">charSet</code>.
+   That means we will not be finding the last occurrence of the <strong>new letter</strong>.
+   So we have to <strong>update</strong> our hashset with any <strong>new</strong> letters that were introduced when we expanded our string.
+   However, we <strong>cannot</strong> update our hashset while iterating over it without getting a <code class="language-plaintext highlighter-rouge">ConcurrentModificationException</code>.
+   So we will introduce a <code class="language-plaintext highlighter-rouge">Stack</code> and then add <strong>all</strong> the <code class="language-plaintext highlighter-rouge">charSet</code> values into the stack.
+   We will now go through every letter in the stack until it is empty and then check if we need to expand our string. If we
+   expand our string then we will take all those chars and <strong>push</strong> them onto our stack <strong>only</strong> if they are <strong>not</strong> already in the <code class="language-plaintext highlighter-rouge">charSet</code>. (Note: when we push a new char onto the stack
+   we will then add it to the char set so that we will not by mistake add it again to our stack).
+   The above solution is coded out below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">partitionLabels</span><span class="o">(</span><span class="nc">String</span> <span class="n">originalString</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+            <span class="k">while</span> <span class="o">(</span><span class="n">originalString</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">String</span> <span class="n">leftString</span> <span class="o">=</span> <span class="n">splitStringByLastOccurrence</span><span class="o">(</span><span class="n">originalString</span><span class="o">,</span> <span class="n">originalString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+
+                <span class="c1">// add all chars of partitioned string to charset so we can know what unique values to search through</span>
+                <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">&gt;</span> <span class="n">charSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+                <span class="n">leftString</span><span class="o">.</span><span class="na">chars</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">charSet</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="kt">char</span><span class="o">)</span><span class="n">s</span><span class="o">));</span>
+
+                <span class="c1">// add all the charset values to stack so we can dynamically add and remove values until it's empty</span>
+                <span class="nc">Stack</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">&gt;</span> <span class="n">stackSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">&lt;&gt;();</span>
+                <span class="n">charSet</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">stackSet</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
+
+                <span class="k">while</span> <span class="o">(!</span><span class="n">stackSet</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">stackSet</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+                    <span class="nc">String</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">splitStringByLastOccurrence</span><span class="o">(</span><span class="n">originalString</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">temp</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">leftString</span><span class="o">.</span><span class="na">length</span><span class="o">())</span>
+                        <span class="n">leftString</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+                    <span class="c1">// Add any NEW chars that may have been added becuase we expanded our string</span>
+                    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">temp</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(!</span><span class="n">charSet</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">leftString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))){</span>
+                            <span class="n">charSet</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">leftString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+                            <span class="n">stackSet</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">leftString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="n">resultList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">leftString</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>    <span class="c1">// add the size to resultList to be returned.</span>
+
+                <span class="n">originalString</span> <span class="o">=</span> <span class="n">originalString</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">leftString</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="n">resultList</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// I can optimize this by passing in a start position for i.</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">splitStringByLastOccurrence</span><span class="o">(</span><span class="nc">String</span> <span class="n">string</span><span class="o">,</span> <span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">lastOccurrence</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span>
+                    <span class="n">lastOccurrence</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// optimize the 0 to instead be 'start'</span>
+            <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">lastOccurrence</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>       <span class="c1">// include the i'th element in the new string.</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="greedy-solution---on">Greedy solution - O(n)</h3>
+
+<p>This table (that shows the input string as an array) should be referenced when reading the solution.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>a</th>
+      <th>b</th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>b</th>
+      <th>a</th>
+      <th>c</th>
+      <th>a</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+      <th>e</th>
+      <th>g</th>
+      <th>d</th>
+      <th>e</th>
+      <th>h</th>
+      <th>i</th>
+      <th>j</th>
+      <th>h</th>
+      <th>k</th>
+      <th>l</th>
+      <th>i</th>
+      <th>j</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>LastIdx (8)</td>
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>LastIdx (15)</td>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+      <td>LastIdx (23)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This solution is a very efficient and element solution. It does two passes each of O(n) time which results in a time complexity of O(n).
+The general idea is to:</p>
+<ol>
+  <li>
+    <p>Make one pass through the string and record the <strong>last</strong> index for each letter. Use a HashMap to do this. In our case the lastIndex
+for <code class="language-plaintext highlighter-rouge">a</code> will be <code class="language-plaintext highlighter-rouge">8</code> as noted in the above table.</p>
+  </li>
+  <li>
+    <p>Make a second pass that will go through the string. First it will store the last index of that char. We now with confidence that we can break our string until we <strong>at least</strong>
+reach that <code class="language-plaintext highlighter-rouge">lastIndex</code>. However, there may be an even <strong>further</strong> index between <code class="language-plaintext highlighter-rouge">firstIndex</code> and current <code class="language-plaintext highlighter-rouge">lastIndex</code>. If so we have to <strong>expand</strong> our string. So we continue
+looping and getting the last index for each char. If there is a further index then our current <code class="language-plaintext highlighter-rouge">lastIndex</code> then we update <code class="language-plaintext highlighter-rouge">lastIndex</code> to be equal to the current
+ furthest index. We continue looping until <code class="language-plaintext highlighter-rouge">i</code> (the index of the element we are up to) is equal to <code class="language-plaintext highlighter-rouge">lastIndex</code>. Because then we know we reached the end. (Again reference the above table.)
+ We can now grab the length of the current string partition by easily taking the difference between <code class="language-plaintext highlighter-rouge">firstIndex</code> and <code class="language-plaintext highlighter-rouge">lastIndex</code>.</p>
+  </li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">partitionLabels</span><span class="o">(</span><span class="nc">String</span> <span class="no">S</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="no">S</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="no">S</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// record the last index of the each char</span>
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">indexMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>  
+
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">S</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">indexMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="no">S</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">),</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// second pass to get the partitions</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="kt">int</span> <span class="n">lastIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">firstIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">S</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">lastIndex</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">lastIndex</span><span class="o">,</span> <span class="n">indexMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="no">S</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)));</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">lastIndex</span> <span class="o">==</span> <span class="n">i</span><span class="o">){</span>
+                <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">lastIndex</span> <span class="o">-</span> <span class="n">firstIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+                <span class="n">firstIndex</span> <span class="o">=</span> <span class="n">lastIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

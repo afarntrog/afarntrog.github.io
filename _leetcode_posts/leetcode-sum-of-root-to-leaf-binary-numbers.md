@@ -1,3 +1,9 @@
+---
+layout: post
+title: Leetcode Partition Labels - 2 Solutions.
+---
+
+
 ##   Sum of Root To Leaf Binary Numbers
 
 The genral idea of this solution is to get a list of **all** the paths.

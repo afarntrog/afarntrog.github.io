@@ -1,5 +1,9 @@
-plugins:
-  - jekyll-relative-links
+name: afarntrog.com
+title: afarntrog.com
+collections:
+  leetcode_posts:
+    output: true
+
 relative_links:
   enabled: true
   collections: true
@@ -7,5 +11,8 @@ include:
   - CONTRIBUTING.md
   - README.md
   - LICENSE.md
-  - leetcode-contains-duplicate-3.md
 markdown: kramdown
+
+
+# plugins:
+#  - jekyll-relative-links

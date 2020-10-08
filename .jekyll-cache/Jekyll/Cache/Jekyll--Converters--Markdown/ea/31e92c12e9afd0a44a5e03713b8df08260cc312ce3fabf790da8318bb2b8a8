@@ -1,0 +1,47 @@
+I"}<h3 id="58-length-of-last-word"><a href="https://leetcode.com/problems/length-of-last-word/">58. Length of Last Word</a></h3>
+
+<p>Given a string s consists of upper/lower-case alphabets and empty space characters ‘ ‘, return the length of last word (last word means the last appearing word if we loop from left to right) in the string.</p>
+
+<p>If the last word does not exist, return 0.</p>
+
+<p>Note: A word is defined as a maximal substring consisting of non-space characters only.</p>
+
+<p>Example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: "Hello World"
+Output: 5
+</code></pre></div></div>
+
+<hr />
+<hr />
+
+<p>The solution here is fairly straight forward. 
+We loop through the string and have a count for the word length.
+If we reach a <code class="language-plaintext highlighter-rouge">' '</code> then we reset counter at the end we return the <code class="language-plaintext highlighter-rouge">len</code>.
+However, we must account for some edge cases. What if the string is <code class="language-plaintext highlighter-rouge">"a "</code> if we just reset the counter when we reach a <code class="language-plaintext highlighter-rouge">' '</code> and then return the len
+then we would end up with a len of 0 but it should really be 1 since the last “word” was <code class="language-plaintext highlighter-rouge">"a"</code>
+Therefore we would have a lastLen variable that would be updated to the most recent <strong>valid</strong> len. Only if that len is greater then 0
+This way when we return we can return the the most recent valid len if our current <code class="language-plaintext highlighter-rouge">len</code> is 0 like in our edge case.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLastWord</span><span class="o">(</span><span class="nc">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">lastLen</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">' '</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">lastLen</span> <span class="o">=</span> <span class="n">len</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">len</span> <span class="o">:</span> <span class="n">lastLen</span><span class="o">;</span>
+                <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">len</span><span class="o">++;</span>
+               <span class="o">}</span>
+                
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">len</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">len</span> <span class="o">:</span> <span class="n">lastLen</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This runs in constant space and linear time - O(N).</p>
+
+<p>P.S. These write-ups are predominantly for myself. They are not meant to be a work of art and can sometimes be a bit raw. If there is a mistake or you have any improvement please reach out to me on <a href="https://www.linkedin.com/in/aaronfarntrog/">LinkedIn</a></p>
+:ET

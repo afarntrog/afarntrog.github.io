@@ -1,0 +1,113 @@
+I"iD<h2 id="sum-of-root-to-leaf-binary-numbers">Sum of Root To Leaf Binary Numbers</h2>
+
+<p>The genral idea of this solution is to get a list of <strong>all</strong> the paths.
+Then for each path get the sum in decimal by using the helper method bin_to_dec() and add path sum to totalSum
+then return totalSum</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRootToLeaf</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+        
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">pathList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">preorder</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="n">pathList</span><span class="o">);</span>
+        
+        <span class="kt">int</span> <span class="n">totalSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">path</span> <span class="o">:</span> <span class="n">pathList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">totalSum</span> <span class="o">+=</span> <span class="n">bin_to_dec</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+        <span class="o">}</span>
+        
+        <span class="k">return</span> <span class="n">totalSum</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">node</span><span class="o">,</span> <span class="nc">String</span> <span class="n">path</span><span class="o">,</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">pathList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="n">pathList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+        <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">pathList</span><span class="o">);</span>
+        <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">pathList</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">bin_to_dec</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">pathLength</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pathLength</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">total</span> <span class="o">+=</span>  <span class="nc">Character</span><span class="o">.</span><span class="na">getNumericValue</span><span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="o">(</span><span class="n">pathLength</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+        
+        <span class="k">return</span> <span class="n">total</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Let’s make a slight improvement on the above code. Instead of using <strong>all</strong> that extra space to store the list
+and then also looping over the entire list to call bin_to_dec() we will replace the list with a running 
+sum:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRootToLeaf</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">preorder</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">preorder</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">node</span><span class="o">,</span> <span class="nc">String</span> <span class="n">path</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> 
+            <span class="k">return</span> <span class="nf">bin_to_dec</span><span class="o">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">pathsToLeft</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">pathsToRight</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">pathsToLeft</span> <span class="o">+</span> <span class="n">pathsToRight</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">bin_to_dec</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">pathLength</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pathLength</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">result</span> <span class="o">+=</span>  <span class="nc">Character</span><span class="o">.</span><span class="na">getNumericValue</span><span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="o">(</span><span class="n">pathLength</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Just to make the <code class="language-plaintext highlighter-rouge">preorder()</code> a bit leaner let’s replace</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">pathsToLeft</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">pathsToRight</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+<span class="k">return</span> <span class="n">pathsToLeft</span> <span class="o">+</span> <span class="n">pathsToRight</span><span class="o">;</span>
+</code></pre></div></div>
+<p>with</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="n">preorder</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>We saved some space and improved the length of the code. However there are still some inefficiences
+.</p>
+<ol>
+  <li>We are constantly rebuilding a string to keep the path.</li>
+  <li>We are looping through the entire path so that we can convert binary to decimal.</li>
+</ol>
+
+<p>Let’s fix these inefficiencies! Instead of looping over the entire</p>
+
+<p>If we can convert binary to decimal another way then we don’t need the helper method at all and we don’t either need the path.
+Instead of converting bin to dec by finding the unit place of the value and then multiplying it by the appropriate power of 2.</p>
+
+<p>We go down the tree keeping a running value of the path. When we hit a leaf we return that val and then continue our recursive method
+with the value that it was before this leaf.
+I found this better solution <a href="https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/discuss/270025/JavaC%2B%2BPython-Recursive-Solution">here</a>. We can keep a running total of the decimal sum for this path by simply multipying running val
+ by 2 and then adding the current root val <code class="language-plaintext highlighter-rouge">val * 2 + root.val</code></p>
+
+<p>We end up with a solution that has a Time complexity of O(N) since we need to touch every node in the tree and Space complexity of O(H) for recursion
+ since at any given point in time we have a linear call stack that doesn’t exceed height of the tree.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRootToLeaf</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">dfs</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">root</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="na">val</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">val</span><span class="o">)</span> <span class="o">+</span> <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

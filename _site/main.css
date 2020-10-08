@@ -1,0 +1,121 @@
+.card-img-top {
+    position: absolute;
+    top: -75px; /*Must be around half image hight*/
+    left: 50%;
+    margin-left: -75px;/*Must be half image hight*/
+    /* width: 60px !important;
+    height: 60px; */
+    width: 150px !important;
+    height: 150px;
+  }
+  
+  .profile-card {
+    margin-top: 100px;
+    padding-top: 70px;
+  }
+
+  [aria-expanded="false"] > .expanded,
+  [aria-expanded="true"] > .collapsed {
+    display: none;
+  }
+
+  .divider {
+    display: inline-block;
+    /* border-bottom: white 1px solid; */
+    width: 100px;
+    margin: 30px;
+  }
+  
+  
+
+/* This is for the custom toggle switch. Was having overlapping problmes with this and the darkreader cdn. This resolved it */
+  .custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+}
+.custom-control-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.custom-switch {
+    padding-left: 2.25rem;
+}
+.custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #0b55c1;
+    background-color: #0b55c1;
+}
+.custom-switch .custom-control-label::before {
+    left: -2.25rem;
+    width: 1.75rem;
+    pointer-events: all;
+    border-radius: .5rem;
+}
+.custom-control-label::before, .custom-file-label, .custom-select {
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.custom-control-label::before {
+    position: absolute;
+    top: .25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    content: "";
+    background-color: #fff;
+    border: #adb5bd solid 1px;
+}
+.custom-switch .custom-control-input:checked~.custom-control-label::after {
+    background-color: #fff;
+    -webkit-transform: translateX(.75rem);
+    transform: translateX(.75rem);
+}
+.custom-switch .custom-control-label::after {
+    top: calc(.25rem + 2px);
+    left: calc(-2.25rem + 2px);
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    background-color: #adb5bd;
+    border-radius: .5rem;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-transform .15s ease-in-out;
+    transition: transform .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: transform .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-transform .15s ease-in-out;
+}
+.custom-control-label::after {
+    position: absolute;
+    top: .25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background: no-repeat 50%/50% 50%;
+}
+
+/* Button that scrolls to the top of page */
+#topButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    padding: 0px 0px;
+    text-align: center;
+}

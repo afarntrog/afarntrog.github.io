@@ -1,0 +1,161 @@
+I"?<!-- START took from here 01 -->
+<!-- END took from here 01 -->
+
+<h1 id="my-page">My page</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- BLOG: When I add a blog. container heading --&gt;
+&lt;div class="container"&gt;
+    &lt;div class=" row d-flex justify-content-center"&gt;
+        &lt;div class="divider"&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+        &lt;div class="divider"&gt;
+            ARTICLES
+        &lt;/div&gt;
+        &lt;div class="divider"&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;!-- End row --&gt;
+    &lt;/div&gt;
+    &lt;!-- End container --&gt;
+&lt;/div&gt;
+
+&lt;!-- Projects container --&gt;
+&lt;div class="container" id="blog"&gt;
+
+    &lt;div class="row"&gt;
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;Bloom Filters&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        An article explaining the problems encounterd before bloom filters. Some attempted
+                        solutions. Problems with those attempted solutions. Finally, bloom filters and their
+                        benefits.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="https://docs.google.com/document/d/183JE9k_ZXYOg1LwtCvBPLrRmc5t-ZmXVhRroJhMmHZo/edit?usp=sharing"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;ACM newsletter&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        Contributed article to the newsletter for Touro College Student Chapter of the Association
+                        for Computing Machinery (ACM)
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="https://las.touro.edu/media/schools-and-colleges/lander-college-for-arts-and-sciences/documents/ACM_Publication_2020.pdf"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;Big Data and Hadoop&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        An article explaining the challenges dealing with big data. We discuss Apache Hadoop as a
+                        solution. Explaing the hadoop ecosystem and how it works in the backend.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="https://docs.google.com/document/d/1y-a4lkdos9UyTJubnXyW_8OIkSJ8ZsLvHm3Y_Kfnlt0/edit?usp=sharing"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;Leetcode: Contains Duplicate III&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        This article shows and explains in depth 3 distinct solutions to the Leetcode Contains Duplicate III problem.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="posts/leetcode-contains-duplicate-3.html"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;Leetcode: Partition Labels&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        This article shows and explains in depth 2 distinct solutions to the Leetcode Partition Labels problem.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="posts/leetcode-partition-labels.html"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;Leetcode: House Robber&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        This article shows and explains in depth 2 distinct solutions to the Leetcode House Robber problem.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="posts/leetcode-partition-labels.html"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+
+        &lt;div class="col-sm-4 py-2"&gt;
+            &lt;div class="card mb-3 bg-light" style="max-width: 20rem;"&gt;
+                &lt;div class="card-header text-center"&gt;
+                    &lt;strong&gt;Leetcode: Length of Last Word&lt;/strong&gt;
+                &lt;/div&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;p&gt;
+                        This article shows and explains in depth a solution to the Leetcode Length of Last Word problem.
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card-footer"&gt;
+                    &lt;a href="posts/leetcode-length-of-last-word.html"
+                        target="_blank" class="btn btn-block btn-outline-info"&gt;View Article&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+
+
+
+    &lt;/div&gt;
+
+    &lt;!--End Row--&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+:ET

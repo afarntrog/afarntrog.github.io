@@ -1,0 +1,79 @@
+I"�'<h3 id="198-house-robber"><a href="https://leetcode.com/problems/house-robber/">198. House Robber</a></h3>
+
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+
+<p>Example 1:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house
+</code></pre></div></div>
+<hr />
+<hr />
+
+<h2 id="1-first-thought---iterative">1. First thought - Iterative.</h2>
+<p>Go through the array backwards. Find the max value for that index and then store the max value in that index. We find the max value by iterating from index <code class="language-plaintext highlighter-rouge">i</code> until the end of the array. We hop over to i+2 then store this in <code class="language-plaintext highlighter-rouge">max</code> we then continue to i+3 if this is greater then we store that in <code class="language-plaintext highlighter-rouge">max</code>. Repeat until i + hop &gt;= nums.length. The max value will be stored in nums[i];
+At each iteration we will update the <code class="language-plaintext highlighter-rouge">resultMax</code> value if the current <code class="language-plaintext highlighter-rouge">nums[i]</code> value is greater then our running max. Then we can just return the <code class="language-plaintext highlighter-rouge">resultMax</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">rob</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">resultMax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>      
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">hop</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">hop</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">hop</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">hop</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">)</span>
+                    <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">hop</span><span class="o">];</span>
+            <span class="o">}</span>
+            <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">max</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">max</span> <span class="o">&gt;</span> <span class="n">resultMax</span><span class="o">)</span> 
+                <span class="n">resultMax</span> <span class="o">=</span> <span class="n">max</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">resultMax</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Space complexity is constant space. Whereas the time complexity will run in O(n^2) because for the 0’th index we will be looping over the entire array -1. and for the 0+1th index we will be looping over the entire array -2.</p>
+
+<hr />
+
+<h2 id="better-solution---iterative--2-variables-see-step-5">Better solution - Iterative + 2 variables <a href="https://leetcode.com/problems/house-robber/discuss/156523/From-good-to-great.-How-to-approach-most-of-DP-problems.">see step 5</a></h2>
+
+<p>A robber has 2 options:
+a) rob current house <code class="language-plaintext highlighter-rouge">i</code>
+b) don’t rob current house.
+If option “a” is selected it means robber can’t rob previous <code class="language-plaintext highlighter-rouge">i-1</code> house but can safely proceed to the one before previous <code class="language-plaintext highlighter-rouge">i-2</code> and gets all cumulative loot that follows.
+If option “b” is selected the robber gets all the loot from robbery of <code class="language-plaintext highlighter-rouge">i-1</code> and all the following buildings.</p>
+
+<p>So we go through the array. We store the value of prev1 and prev2. If the house immediately before this one is more valuable then robbing this house + collecting all the loot from the house 2 before this one, then we choose “b” - do not rob this house because the one before this one is more valuable. Else, rob this house and collect the prev2 loot. <code class="language-plaintext highlighter-rouge">Math.max(prev2 + num, prev1);</code> 
+prev1 will always be the most recently robbed house and prev2 will be the house 1 hop over.</p>
+
+<p>We always choose the first house. But we may not stick with it as we progress through the array.
+Do i want the house I just robbed or do I want this house + the house before this one and its loot.</p>
+
+<p>Example [1,2,3,1]
+we first choose 1 because that is the most valuable house as of current. But then we move on, we can rob house[0] or house[1]. house[0] has value of 1 and house[1] has value of 2. So we un-rob house[0] and then rob house[1]. 
+Now, prev1 is the (cumulative) value of the house we just robbed == 2, and prev2 = house[0] == 1
+we move on.
+we can rob house[1] = 2 or house[2] = 3 + house[0] because that is the current value of prev2 - the house before the one we recently robbed.
+we choose latter; house[2] = 3 + house[0]  since that is 4.
+next we can rob house[2] + its loot, meaning do not rob this house rather keep the previous robbery or choose to rob this house - house[3] == 1 + prev2 == house we robbed before current rob == 2 this equals 2+1=3. We choose not to rob this house since keeping our previous robbery results in greater loot. We have reached the end of the array so we can just return prev1 which will always be the most <strong>recently</strong> robbed house which is therefore always the most valuable; highest sum.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">rob</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">prev1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">prev2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">prev1</span><span class="o">;</span>
+        <span class="n">prev1</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">prev2</span> <span class="o">+</span> <span class="n">num</span><span class="o">,</span> <span class="n">prev1</span><span class="o">);</span>
+        <span class="n">prev2</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">prev1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This runs in constant space and linear time.</p>
+
+<p>P.S. These write-ups are predominantly for myself. They are not meant to be a work of art and can sometimes be a bit raw. If there is a mistake or you have any improvement please reach out to me on <a href="https://www.linkedin.com/in/aaronfarntrog/">LinkedIn</a></p>
+:ET

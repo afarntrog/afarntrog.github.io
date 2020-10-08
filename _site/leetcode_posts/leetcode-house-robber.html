@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+
+
+    <!-- <title>Aaron Farntrog</title> -->
+    <title>Leetcode 198. House Robber- 2 Solutions. | afarntrog.com</title>
+    
+</head>
+
+<body class="bg-light">
+    <div id="msgs"></div>
+
+    <div class="container d-flex p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <nav class="nav justify-content-center float-right">
+                <div class="nav-link">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" onchange="darkModeToggle()" id="darkSwitch">
+                        <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container">
+
+        <div class="card profile-card mx-auto" style="max-width: 30rem;">
+            <img class="card-img-top img-circle rounded-circle" src="./profile_pic.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title text-center font-weight-bold">Aaron Farntrog</h5>
+                <p></p>
+                <p class="card-text text-center">Currently studying for a B.S. in Computer Science at Touro College, New
+                    York. Expected graduation May, 2021.</p>
+            </div>
+            <!-- <hr> -->
+            <div class="border-top pt-4 pb-4">
+                <div class="row ">
+                    <div class="col text-center ">
+                        <a href="https://www.linkedin.com/in/afarntrog/" target="_blank"
+                            class="btn btn-outline-info ml-3 float-lg-left"><strong>LinkedIn</strong> <span
+                                class="fab fa-linkedin-in"></span></a>
+                        <a href="https://1drv.ms/w/s!AgZd0IWGlzvFhStB9gwS_2HZT8R1?e=9qp0i4
+                        " class="btn btn-outline-info" target="_blank"><strong>Resume</strong> <span
+                                class="fa fa-download float-sm-none"></span></a>
+                        <a href="https://github.com/afarntrog" target="_blank"
+                            class="btn btn-outline-info  mr-3 float-lg-right"><strong>GitHub</strong> <span
+                                class="fab fa-github"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- <div class="text-center" ><i class="btn text-muted" onclick="darkModeToggle()" id="bye">Dark 🌒 mode</i></div> -->
+    <br>
+
+    <!-- Projects container heading -->
+    <div class="container">
+        <div class=" row d-flex justify-content-center">
+            <div class="divider">
+                <hr>
+            </div>
+            <div class="divider">
+                PROJECTS
+            </div>
+            <div class="divider">
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects container -->
+    <div class="container" id="projects">
+
+        <div class="row">
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Java-Board-Games</strong>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Java-Board-Games is a repository of different classic board games I built with Java.
+                            See how I implemented Othello or how I created a Sudoku solver using the Backtracking
+                            approach.
+                        </p>
+
+                        <hr>
+
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Java</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">IntelliJ</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Backtracking</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Github</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Linux</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/afarntrog/java-board-games" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/java-board-games" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Difficilis</strong>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Difficilis is a platform where users can enter their dilemma and make better decisions.
+
+                            <!--Display more or less words-->
+                            <span class="collapse" id="block-id">
+                                Users can also find inspiration by searching through dilemmas and decisions shared by
+                                other users.
+                                Additionally, users can interact by sharing their dilemmas publicly and by voting on
+                                other public dilemmas.
+                            </span>
+                        </p>
+
+
+                        <!-- aria-expanded attribute is mandatory -->
+                        <!-- bootstrap changes it to true/false on toggle -->
+                        <a href="#block-id" class="btn btn-outline-info" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="block-id">
+
+                            <span class="collapsed">
+                                Show more
+                            </span>
+                            <span class="expanded">
+                                Show Less
+                            </span>
+
+                        </a>
+
+
+                        <hr>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Python</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Javascript</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Django</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">jQuery</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">SQLite</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Github</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Linux</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Heroku</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">HTML</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Bootstrap</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.difficilis.com/" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/difficilis-django" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Portfolio</strong>
+                    </div>
+                    <div class="card-body">
+                        This minimalist portfolio, geared toward backend software engineers, is open sourced on my
+                        Github page.
+                        <hr>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Ajax</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">jQuery</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Github</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Bootstrap</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">CSS</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">HTML</span></span>
+
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://aaronfarntrog.com/" target="_blank" class="btn btn-block btn-outline-info">View
+                            Project</a>
+                        <a href="https://github.com/afarntrog/afarntrog.github.io" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>YouTube Worcloud</strong>
+                    </div>
+                    <div class="card-body">
+                        YouTube Worcloud allows anyone to easily create a Wordcloud from the comments of any YouTube
+                        video.
+                        <hr>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">YouTube API</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Javascript</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Python</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Django</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Ajax</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Heroku</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Bootstrap</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Linux</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">HTML</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://youtube-wordcloud.herokuapp.com/" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/yt-comments-wordcloud" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Searchable Classifieds</strong>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            This webapp scrapes JPEG images from my local newspapers classifieds job posts. It then
+                            converts the JPEG to text using OCR.
+
+                            <!--Display more or less words-->
+                            <span class="collapse" id="Searchable">
+                                I then displayed them in a nice format and added search to the app. So now you can
+                                easily find jobs with your desired keywords.
+                            </span>
+                        </p>
+
+
+                        <!-- aria-expanded attribute is mandatory -->
+                        <!-- bootstrap changes it to true/false on toggle -->
+                        <a href="#Searchable" class="btn btn-outline-info" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="block-id">
+
+                            <span class="collapsed">
+                                Show more
+                            </span>
+                            <span class="expanded">
+                                Show Less
+                            </span>
+
+                        </a>
+
+                        <hr>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">OCR</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Javascript</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Python</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Django</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Ajax</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Bootstrap</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Linux</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Heroku</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">HTML</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/afarntrog/searchable-classifieds" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/searchable-classifieds" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Twitter-Analyzer</strong>
+                    </div>
+                    <div class="card-body">
+                        Analyze the "personality" behind a Twitter user. This will scrape all the users tweets and
+                        output the overall sentiment of the target twitter user.
+                        <hr>
+
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Python</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Virtual Env</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Github</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/afarntrog/twitter-personality" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/twitter-personality" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Ecommerce Desktop Application</strong>
+                    </div>
+                    <div class="card-body">
+                        A C# desktop application that is backed by a SQL database. It is a full scale Ecommerce platform
+                        on the desktop.
+                        <hr>
+
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">C#</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">SQL Server</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">SQL</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">ERD</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Desktop
+                                Application</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/afarntrog/merch-shop" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/merch-shop" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Contacts Android App</strong>
+                    </div>
+                    <div class="card-body">
+                        A Java directory app for Touro college. Students can use it to keep track of important
+                        information
+                        about their professors and faculty.
+                        <hr>
+
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Java</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Android Studio</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Android</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/afarntrog/touro-contacts" target="_blank"
+                            class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/touro-contacts" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 py-2">
+                <div class="card mb-3 bg-light" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <strong>Perpetual Motion Card Game</strong>
+                    </div>
+                    <div class="card-body">
+                        Perpetual Motion Card Game is an Android app that allows users to play the fun Perpetual Motion
+                        game.
+                        This app takes advantage of RecyclerView and adapters to provide the most efficent experience.
+                        <hr>
+
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Java</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Android Studio</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Android</span></span>
+                        <span class="badge badge-pill badge-info mb-1"><span class="h6">Git</span></span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://raw.githubusercontent.com/afarntrog/perpetual-motion-cards/master/game_gif.gif"
+                            target="_blank" class="btn btn-block btn-outline-info">View Project</a>
+                        <a href="https://github.com/afarntrog/perpetual-motion-cards" target="_blank"
+                            class="btn btn-block btn-outline-info">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--End Row-->
+    </div>
+    <!--End Row-->
+    </div>
+
+    <h3 id="198-house-robber"><a href="https://leetcode.com/problems/house-robber/">198. House Robber</a></h3>
+
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+
+<p>Example 1:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house
+</code></pre></div></div>
+<hr />
+<hr />
+
+<h2 id="1-first-thought---iterative">1. First thought - Iterative.</h2>
+<p>Go through the array backwards. Find the max value for that index and then store the max value in that index. We find the max value by iterating from index <code class="language-plaintext highlighter-rouge">i</code> until the end of the array. We hop over to i+2 then store this in <code class="language-plaintext highlighter-rouge">max</code> we then continue to i+3 if this is greater then we store that in <code class="language-plaintext highlighter-rouge">max</code>. Repeat until i + hop &gt;= nums.length. The max value will be stored in nums[i];
+At each iteration we will update the <code class="language-plaintext highlighter-rouge">resultMax</code> value if the current <code class="language-plaintext highlighter-rouge">nums[i]</code> value is greater then our running max. Then we can just return the <code class="language-plaintext highlighter-rouge">resultMax</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">rob</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">resultMax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>      
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">hop</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">hop</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">hop</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">hop</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">)</span>
+                    <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">hop</span><span class="o">];</span>
+            <span class="o">}</span>
+            <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">max</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">max</span> <span class="o">&gt;</span> <span class="n">resultMax</span><span class="o">)</span> 
+                <span class="n">resultMax</span> <span class="o">=</span> <span class="n">max</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">resultMax</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Space complexity is constant space. Whereas the time complexity will run in O(n^2) because for the 0’th index we will be looping over the entire array -1. and for the 0+1th index we will be looping over the entire array -2.</p>
+
+<hr />
+
+<h2 id="better-solution---iterative--2-variables-see-step-5">Better solution - Iterative + 2 variables <a href="https://leetcode.com/problems/house-robber/discuss/156523/From-good-to-great.-How-to-approach-most-of-DP-problems.">see step 5</a></h2>
+
+<p>A robber has 2 options:
+a) rob current house <code class="language-plaintext highlighter-rouge">i</code>
+b) don’t rob current house.
+If option “a” is selected it means robber can’t rob previous <code class="language-plaintext highlighter-rouge">i-1</code> house but can safely proceed to the one before previous <code class="language-plaintext highlighter-rouge">i-2</code> and gets all cumulative loot that follows.
+If option “b” is selected the robber gets all the loot from robbery of <code class="language-plaintext highlighter-rouge">i-1</code> and all the following buildings.</p>
+
+<p>So we go through the array. We store the value of prev1 and prev2. If the house immediately before this one is more valuable then robbing this house + collecting all the loot from the house 2 before this one, then we choose “b” - do not rob this house because the one before this one is more valuable. Else, rob this house and collect the prev2 loot. <code class="language-plaintext highlighter-rouge">Math.max(prev2 + num, prev1);</code> 
+prev1 will always be the most recently robbed house and prev2 will be the house 1 hop over.</p>
+
+<p>We always choose the first house. But we may not stick with it as we progress through the array.
+Do i want the house I just robbed or do I want this house + the house before this one and its loot.</p>
+
+<p>Example [1,2,3,1]
+we first choose 1 because that is the most valuable house as of current. But then we move on, we can rob house[0] or house[1]. house[0] has value of 1 and house[1] has value of 2. So we un-rob house[0] and then rob house[1]. 
+Now, prev1 is the (cumulative) value of the house we just robbed == 2, and prev2 = house[0] == 1
+we move on.
+we can rob house[1] = 2 or house[2] = 3 + house[0] because that is the current value of prev2 - the house before the one we recently robbed.
+we choose latter; house[2] = 3 + house[0]  since that is 4.
+next we can rob house[2] + its loot, meaning do not rob this house rather keep the previous robbery or choose to rob this house - house[3] == 1 + prev2 == house we robbed before current rob == 2 this equals 2+1=3. We choose not to rob this house since keeping our previous robbery results in greater loot. We have reached the end of the array so we can just return prev1 which will always be the most <strong>recently</strong> robbed house which is therefore always the most valuable; highest sum.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">rob</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">prev1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">prev2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">prev1</span><span class="o">;</span>
+        <span class="n">prev1</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">prev2</span> <span class="o">+</span> <span class="n">num</span><span class="o">,</span> <span class="n">prev1</span><span class="o">);</span>
+        <span class="n">prev2</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">prev1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This runs in constant space and linear time.</p>
+
+<p>P.S. These write-ups are predominantly for myself. They are not meant to be a work of art and can sometimes be a bit raw. If there is a mistake or you have any improvement please reach out to me on <a href="https://www.linkedin.com/in/aaronfarntrog/">LinkedIn</a></p>
+
+<ul class="myposts">
+
+<h2>BLASSSSS</h2>
+    <li><a href="/leetcode_posts/leetcode-contains-duplicate-3.html">Leetcode Contains Duplicate 3 - 3 Solutions.</a>
+    </li>
+    <p><h3 id="220-contains-duplicate-iii"><a href="https://leetcode.com/problems/contains-duplicate-iii/">220. Contains Duplicate III</a></h3>
+
+<p>Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k.</p>
+
+<p>Example 1:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [1,2,3,1], k = 3, t = 0
+Output: true
+</code></pre></div></div>
+<hr />
+
+<p>Let’s try the easy solution first.</p>
+
+<h2 id="1-brute-force-solution">1. Brute force solution</h2>
+
+<p>This is definitely the simplest way to solve it but the most inefficient. We can simply create a nested <code class="language-plaintext highlighter-rouge">for loop</code> and check each value in the array against every other value
+in the array. At each iteration we check if:</p>
+<ol>
+  <li>The two values have indexes that have an absolute difference between them that are at most k</li>
+  <li>The two values themselves have an absolute difference between them that are at most t</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>  <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span> <span class="o">(</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Note we can optimize this a bit by not looping over the <strong>entire</strong> array. Instead, we can start form i + 1 because we already tested the abs() value earlier.
+(Math.abs(nums[i] - nums[j] ) is the same as Math.abs(nums[j] - nums[i] )) And we do <code class="language-plaintext highlighter-rouge">i + 1</code> because we want to exclude <code class="language-plaintext highlighter-rouge">i</code> itself since the index must be distinct.
+However, this still results in O(n^2). 
+We can do much better with the next solution.</p>
+
+<h2 id="2-sliding-window-solution">2. Sliding window solution</h2>
+
+<p>We will keep a small window of size k and check those k elements if there contains the correct value. 
+The elements will be stored in a BST for O(log k) lookup.</p>
+
+<p>We will maintain a binary search tree that never exceeds the value of k (our sliding window).
+A BST has a search complexity of log k where k is the total number of nodes in the BST.</p>
+
+<p>Summary of what we will do:
+We will loop over the array and check all the values, that have an index that is within <code class="language-plaintext highlighter-rouge">k</code> indexes from the current index, if any of those values have an 
+absolute difference from the current value that is <code class="language-plaintext highlighter-rouge">&lt;= t</code> we will <code class="language-plaintext highlighter-rouge">return true</code>.</p>
+
+<p>For each value in the array we do the following:
+1) Get the closest value that is smaller than this current value.
+2) Get the closest value that is larger than this current value.</p>
+
+<p>This essentially searches in both directions of the array. Remember, we are only searching within the <code class="language-plaintext highlighter-rouge">k</code> bound. Our tree will <strong>never</strong> exceed k nodes. Because we only
+want to look at values to the left and right of the current value if those values have an <code class="language-plaintext highlighter-rouge">index &lt;= k</code>.</p>
+
+<p>If there is a value in the treeSet that has an absolute difference from current value that is <code class="language-plaintext highlighter-rouge">&lt;= t</code> then we return true. Because, again, we already know that all the values in the BST are within <code class="language-plaintext highlighter-rouge">k</code> distance.
+If there does not exist a value in the treeSet that has an absolute difference from current value that is <code class="language-plaintext highlighter-rouge">&lt;= t</code> then we add this current element to the <code class="language-plaintext highlighter-rouge">treeSet</code>
+Then we adjust our sliding window to make sure our <code class="language-plaintext highlighter-rouge">treeSet</code> does not exceed <code class="language-plaintext highlighter-rouge">k</code>. Remove the furthest element if it does exceed <code class="language-plaintext highlighter-rouge">k</code>.</p>
+
+<p>Let’s take an example and walk through it:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [3,5,7,8], k = 2, t = 1
+Output: true
+</code></pre></div></div>
+
+<p>We begin looping through the array and set <code class="language-plaintext highlighter-rouge">val</code> to 3. Since there are no values in the <code class="language-plaintext highlighter-rouge">treeSet</code>, <code class="language-plaintext highlighter-rouge">ceil</code> and <code class="language-plaintext highlighter-rouge">floor</code> are both <code class="language-plaintext highlighter-rouge">null</code>.
+So we add 3 into <code class="language-plaintext highlighter-rouge">treeSet</code> and continue the loop.</p>
+
+<p>Our <code class="language-plaintext highlighter-rouge">treeSet</code> currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-3.png" alt="treeImage" /></p>
+
+<p>Now <code class="language-plaintext highlighter-rouge">val</code> is 5. <code class="language-plaintext highlighter-rouge">floor</code> is 3 and <code class="language-plaintext highlighter-rouge">ceil</code> is <code class="language-plaintext highlighter-rouge">null</code> Since <code class="language-plaintext highlighter-rouge">5 - 3 is 2</code> this is not <code class="language-plaintext highlighter-rouge">&lt;= t</code> so we add 5 to <code class="language-plaintext highlighter-rouge">treeSet</code> and continue.</p>
+
+<p>Our <code class="language-plaintext highlighter-rouge">treeSet</code> currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-3-5.png" alt="treeImage" /></p>
+
+<p>now <code class="language-plaintext highlighter-rouge">val</code> is 7. <code class="language-plaintext highlighter-rouge">floor</code> is 5 and <code class="language-plaintext highlighter-rouge">ceil</code> is <code class="language-plaintext highlighter-rouge">null</code>. Again, since this does not result in ` &lt;= t<code class="language-plaintext highlighter-rouge"> we add 7 to </code>treeSet<code class="language-plaintext highlighter-rouge"> and continue
+Our </code>treeSet` currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-3-5-7.png" alt="treeImage" /></p>
+
+<p>Notice that our <code class="language-plaintext highlighter-rouge">treeSet</code> is larger than <code class="language-plaintext highlighter-rouge">k</code>! So we <strong>remove</strong> the <code class="language-plaintext highlighter-rouge">i - k</code> element, or the oldest added one.
+Our updated <code class="language-plaintext highlighter-rouge">treeSet</code> currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-5-7.png" alt="treeImage" /></p>
+
+<p>now <code class="language-plaintext highlighter-rouge">val</code> is 8. <code class="language-plaintext highlighter-rouge">floor</code> is 7 and <code class="language-plaintext highlighter-rouge">ceil</code> is again <code class="language-plaintext highlighter-rouge">null</code>. Since <code class="language-plaintext highlighter-rouge">8 - 7 is 1</code> this is <code class="language-plaintext highlighter-rouge">&lt;= t</code> so we <code class="language-plaintext highlighter-rouge">return true</code> and we’re done.</p>
+
+<p>note we don’t need to use Math.abs like in the brute force solution. This is because with <code class="language-plaintext highlighter-rouge">floor</code> we are getting the value that is the closest value
+ to nums[i] that is still smaller than nums[i]. Therefore, we know that it will not return a negative since we will do (nums[i] - floor). The 
+ same applies just in reverse when checking if (ceil - nums[i]) is in the BST.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="k">if</span><span class="o">(</span><span class="n">nums</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>  <span class="c1">// this is basic check to make sure input is valid.</span>
+
+            <span class="nc">TreeSet</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">treeSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;();</span>
+
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="kt">long</span> <span class="n">val</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>     <span class="c1">// cast to long because out TreeSet is of type Long.</span>
+
+                <span class="nc">Long</span> <span class="n">floor</span> <span class="o">=</span> <span class="n">treeSet</span><span class="o">.</span><span class="na">floor</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+                <span class="nc">Long</span> <span class="n">ceil</span> <span class="o">=</span> <span class="n">treeSet</span><span class="o">.</span><span class="na">ceiling</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span> <span class="o">(</span><span class="n">floor</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">val</span> <span class="o">-</span> <span class="n">floor</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">ceil</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">ceil</span> <span class="o">-</span> <span class="n">val</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="o">)</span> <span class="o">)</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+                <span class="n">treeSet</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="o">)</span>
+                    <span class="n">treeSet</span><span class="o">.</span><span class="na">remove</span><span class="o">((</span><span class="kt">long</span><span class="o">)</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">]);</span>  <span class="c1">// remember to cast to long.</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>So this is O(n log k) because we are (maybe) going through the entire array and for each val in the array we do a BST lookup which is O(log k) 
+ so this results in O(n log k).</p>
+
+<p>O(n log k) is certainly better than O(n^2), however, can we do better? Well, yes. We can solve this in O(n) using Buckets.</p>
+
+<h2 id="3-bucket-solution">3. Bucket solution:</h2>
+
+<p>The general idea is to create buckets of values that are within t range.
+The code below is well commented and variables are well named. Although the concept may be difficult this code should be easy to read and understand.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// There cannot be a negative absolute distance.</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>    
+
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="n">buckets</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+
+        <span class="c1">// we add 1 to avoid the case where t == 0. </span>
+        <span class="c1">// Because if t == 0 then we will get "ArithmeticException: / by zero" Exception when dividing by t later on when we get bucketID.</span>
+        <span class="kt">long</span> <span class="n">bucketWidth</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> 
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">long</span> <span class="n">currNum</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>   <span class="c1">// we must start the "base" from Integer.MIN_VALUE so that we can handle negative numbers. Do not focus on this right now.</span>
+            <span class="kt">long</span> <span class="n">bucketID</span> <span class="o">=</span> <span class="n">currNum</span> <span class="o">/</span> <span class="n">bucketWidth</span><span class="o">;</span>  <span class="c1">// This will tell us which bucket to place the currNum into. </span>
+
+            <span class="c1">// Each "bucket" will only ever have one value (unlike bucket sort)</span>
+            <span class="c1">// if **this** value is already in the bucket than we know that currNum is definitely within t distance of bucketNum </span>
+            <span class="c1">// additionally, if it is in the bucket then it is within k index range. so we found a match.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buckets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">bucketID</span><span class="o">))</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+            <span class="c1">// Next 2 `if` checks explained: </span>
+            <span class="c1">// Some numbers with differences less than `t` __may__ be put into different buckets. In such cases, however, they can **only** be in **immediate** neighboring buckets.</span>
+
+            <span class="c1">// if there is a bucket to the **immediate** left then check to see if that value in that bucket is within "absolute difference" distance (t) from the current value</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buckets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">currNum</span> <span class="o">-</span> <span class="n">buckets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">-</span> <span class="mi">1</span><span class="o">))</span> <span class="o">&lt;</span> <span class="n">bucketWidth</span><span class="o">)</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+            <span class="c1">// if there is a bucket to the **immediate** right then check to see if that value in that bucket is within "absolute difference" distance (t) from the current value</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buckets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">currNum</span> <span class="o">-</span> <span class="n">buckets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span> <span class="o">&lt;</span> <span class="n">bucketWidth</span><span class="o">)</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+            <span class="c1">// add currNum to our buckets.</span>
+            <span class="n">buckets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">bucketID</span><span class="o">,</span> <span class="n">currNum</span><span class="o">);</span>
+
+            <span class="c1">// Remove the element that is not within k index distance:</span>
+            <span class="c1">// if i &gt;= k then we do not want to be looking at this value anymore since it is out of index range (k) so we will remove it. </span>
+            <span class="c1">// We are getting the bucketID like we did earlier. Just we are doing i - k so that we get the element that is k distance from the current one, since that's the one out of range.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">long</span> <span class="n">furthestNumBucketID</span> <span class="o">=</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">]</span> <span class="o">-</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">)</span> <span class="o">/</span> <span class="n">bucketWidth</span><span class="o">;</span>
+                <span class="n">buckets</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">furthestNumBucketID</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This solution has a time complexity of O(n). Since we only iterate through the array at max once and the lookup and inserts into the HashMap (<code class="language-plaintext highlighter-rouge">buckets</code>) is constant time O(1).</p>
+
+<p>We covered 3 solutions. We did a brute force that runs in O(n^2) we then covered Sliding window solution that uses a BST that runs in (n log k) time and we finished with
+the Bucket solution that runs in O(n) time. The more efficient they are the more complex they are…</p>
+</p>
+
+<h2>BLASSSSS</h2>
+    <li><a href="/leetcode_posts/leetcode-house-robber.html">Leetcode 198. House Robber- 2 Solutions.</a>
+    </li>
+    <p><h3 id="198-house-robber"><a href="https://leetcode.com/problems/house-robber/">198. House Robber</a></h3>
+
+<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
+
+<p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
+
+<p>Example 1:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house
+</code></pre></div></div>
+<hr />
+<hr />
+
+<h2 id="1-first-thought---iterative">1. First thought - Iterative.</h2>
+<p>Go through the array backwards. Find the max value for that index and then store the max value in that index. We find the max value by iterating from index <code class="language-plaintext highlighter-rouge">i</code> until the end of the array. We hop over to i+2 then store this in <code class="language-plaintext highlighter-rouge">max</code> we then continue to i+3 if this is greater then we store that in <code class="language-plaintext highlighter-rouge">max</code>. Repeat until i + hop &gt;= nums.length. The max value will be stored in nums[i];
+At each iteration we will update the <code class="language-plaintext highlighter-rouge">resultMax</code> value if the current <code class="language-plaintext highlighter-rouge">nums[i]</code> value is greater then our running max. Then we can just return the <code class="language-plaintext highlighter-rouge">resultMax</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">rob</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">resultMax</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>      
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">hop</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">hop</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">hop</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">hop</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">)</span>
+                    <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">hop</span><span class="o">];</span>
+            <span class="o">}</span>
+            <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">max</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">max</span> <span class="o">&gt;</span> <span class="n">resultMax</span><span class="o">)</span> 
+                <span class="n">resultMax</span> <span class="o">=</span> <span class="n">max</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">resultMax</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Space complexity is constant space. Whereas the time complexity will run in O(n^2) because for the 0’th index we will be looping over the entire array -1. and for the 0+1th index we will be looping over the entire array -2.</p>
+
+<hr />
+
+<h2 id="better-solution---iterative--2-variables-see-step-5">Better solution - Iterative + 2 variables <a href="https://leetcode.com/problems/house-robber/discuss/156523/From-good-to-great.-How-to-approach-most-of-DP-problems.">see step 5</a></h2>
+
+<p>A robber has 2 options:
+a) rob current house <code class="language-plaintext highlighter-rouge">i</code>
+b) don’t rob current house.
+If option “a” is selected it means robber can’t rob previous <code class="language-plaintext highlighter-rouge">i-1</code> house but can safely proceed to the one before previous <code class="language-plaintext highlighter-rouge">i-2</code> and gets all cumulative loot that follows.
+If option “b” is selected the robber gets all the loot from robbery of <code class="language-plaintext highlighter-rouge">i-1</code> and all the following buildings.</p>
+
+<p>So we go through the array. We store the value of prev1 and prev2. If the house immediately before this one is more valuable then robbing this house + collecting all the loot from the house 2 before this one, then we choose “b” - do not rob this house because the one before this one is more valuable. Else, rob this house and collect the prev2 loot. <code class="language-plaintext highlighter-rouge">Math.max(prev2 + num, prev1);</code> 
+prev1 will always be the most recently robbed house and prev2 will be the house 1 hop over.</p>
+
+<p>We always choose the first house. But we may not stick with it as we progress through the array.
+Do i want the house I just robbed or do I want this house + the house before this one and its loot.</p>
+
+<p>Example [1,2,3,1]
+we first choose 1 because that is the most valuable house as of current. But then we move on, we can rob house[0] or house[1]. house[0] has value of 1 and house[1] has value of 2. So we un-rob house[0] and then rob house[1]. 
+Now, prev1 is the (cumulative) value of the house we just robbed == 2, and prev2 = house[0] == 1
+we move on.
+we can rob house[1] = 2 or house[2] = 3 + house[0] because that is the current value of prev2 - the house before the one we recently robbed.
+we choose latter; house[2] = 3 + house[0]  since that is 4.
+next we can rob house[2] + its loot, meaning do not rob this house rather keep the previous robbery or choose to rob this house - house[3] == 1 + prev2 == house we robbed before current rob == 2 this equals 2+1=3. We choose not to rob this house since keeping our previous robbery results in greater loot. We have reached the end of the array so we can just return prev1 which will always be the most <strong>recently</strong> robbed house which is therefore always the most valuable; highest sum.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">rob</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">prev1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">prev2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">prev1</span><span class="o">;</span>
+        <span class="n">prev1</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">prev2</span> <span class="o">+</span> <span class="n">num</span><span class="o">,</span> <span class="n">prev1</span><span class="o">);</span>
+        <span class="n">prev2</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">prev1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This runs in constant space and linear time.</p>
+
+<p>P.S. These write-ups are predominantly for myself. They are not meant to be a work of art and can sometimes be a bit raw. If there is a mistake or you have any improvement please reach out to me on <a href="https://www.linkedin.com/in/aaronfarntrog/">LinkedIn</a></p>
+</p>
+
+<h2>BLASSSSS</h2>
+    <li><a href="/leetcode_posts/leetcode-length-of-last-word.html">Leetcode 58. Length of Last Word - Solution.</a>
+    </li>
+    <p>### [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/)
+
+Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word (last word means the last appearing word if we loop from left to right) in the string.
+
+If the last word does not exist, return 0.
+
+Note: A word is defined as a maximal substring consisting of non-space characters only.
+
+Example:
+
+```
+Input: "Hello World"
+Output: 5
+```
+
+---
+---
+
+The solution here is fairly straight forward. 
+We loop through the string and have a count for the word length.
+If we reach a `' '` then we reset counter at the end we return the `len`.
+However, we must account for some edge cases. What if the string is `"a "` if we just reset the counter when we reach a `' '` and then return the len
+then we would end up with a len of 0 but it should really be 1 since the last "word" was `"a"`
+Therefore we would have a lastLen variable that would be updated to the most recent **valid** len. Only if that len is greater then 0
+This way when we return we can return the the most recent valid len if our current `len` is 0 like in our edge case.
+
+
+
+
+
+```java
+class Solution {
+    public int lengthOfLastWord(String s) {
+        int len = 0;
+        int lastLen = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') {
+                lastLen = len > 0 ? len : lastLen;
+                len = 0;
+             } else {
+                len++;
+               }
+                
+        }
+        return len > 0 ? len : lastLen;
+    }
+}
+```
+
+This runs in constant space and linear time - O(N).
+
+P.S. These write-ups are predominantly for myself. They are not meant to be a work of art and can sometimes be a bit raw. If there is a mistake or you have any improvement please reach out to me on [LinkedIn](https://www.linkedin.com/in/aaronfarntrog/)</p>
+
+<h2>BLASSSSS</h2>
+    <li><a href="/leetcode_posts/leetcode-partition-labels.html">Leetcode Partition Labels - 2 Solutions.</a>
+    </li>
+    <p>### [763. Partition Labels](https://leetcode.com/problems/partition-labels/)
+
+
+A string S of lowercase English letters is given. We want to partition this string into as many parts as possible so that each letter appears in at most one part, and return a list of integers representing the size of these parts.
+
+ 
+
+Example 1:
+
+```
+Input: S = "ababcbacadefegdehijhklij"
+Output: [9,7,8]
+Explanation:
+The partition is "ababcbaca", "defegde", "hijhklij".
+This is a partition so that each letter appears in at most one part.
+A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits S into less parts.
+```
+
+---
+---
+
+## 1. Brute force - first thought. 
+This is a **terrible** solution but I am writing it here because it was my first thought. You should probably skip to bottom solution.
+
+The general idea:
+
+
+   You begin by finding the last occurrence of the first letter in the original string.
+   Then partition the string by that last occurrence. You should now have two strings: a left partition, and a right partition.
+   Let us handle the left partition. Although you found the last occurrence of the first letter, the left partition may contain other letters that are **also** in the right half.
+   So we must **expand** our left string to include those letters. 
+   After we partition the left side, we add all of the `leftString` chars into the `charSet`.
+   This allows us to loop over the set and for each letter in the set we will **again** find that last occurrence and then partition the string.
+   **If** this new partition is larger than our `leftString` then that means we must **expand** the left partition. So we **update** our left partition.
+   However, now there is a new problem: if we expand the left partition we may **introduce** a new letter that was **not** in the original `leftString` and therefore not in the current `charSet`.
+   That means we will not be finding the last occurrence of the **new letter**.
+   So we have to **update** our hashset with any **new** letters that were introduced when we expanded our string.
+   However, we **cannot** update our hashset while iterating over it without getting a `ConcurrentModificationException`.
+   So we will introduce a `Stack` and then add **all** the `charSet` values into the stack.
+   We will now go through every letter in the stack until it is empty and then check if we need to expand our string. If we
+   expand our string then we will take all those chars and **push** them onto our stack **only** if they are **not** already in the `charSet`. (Note: when we push a new char onto the stack
+   we will then add it to the char set so that we will not by mistake add it again to our stack).
+   The above solution is coded out below.
+   
+```java
+class Solution {
+        public static List<Integer> partitionLabels(String originalString) {
+
+            List<Integer> resultList = new ArrayList<>();
+
+            while (originalString.length() > 0) {
+                String leftString = splitStringByLastOccurrence(originalString, originalString.charAt(0));
+
+                // add all chars of partitioned string to charset so we can know what unique values to search through
+                Set<Character> charSet = new HashSet<>();
+                leftString.chars().forEach(s -> charSet.add((char)s));
+
+                // add all the charset values to stack so we can dynamically add and remove values until it's empty
+                Stack<Character> stackSet = new Stack<>();
+                charSet.forEach(s -> stackSet.add(s));
+
+                while (!stackSet.isEmpty()) {
+                    char c = stackSet.pop();
+                    String temp = splitStringByLastOccurrence(originalString, c);
+                    if (temp.length() > leftString.length())
+                        leftString = temp;
+                    // Add any NEW chars that may have been added becuase we expanded our string
+                    for (int i = 0; i < temp.length(); i++) {
+                        if (!charSet.contains(leftString.charAt(i))){
+                            charSet.add(leftString.charAt(i));
+                            stackSet.push(leftString.charAt(i));
+                        }
+                    }
+                }
+
+                resultList.add(leftString.length());    // add the size to resultList to be returned.
+
+                originalString = originalString.substring(leftString.length());
+            }
+            return resultList;
+        }
+
+        // I can optimize this by passing in a start position for i.
+        public static String splitStringByLastOccurrence(String string, char c) {
+            int lastOccurrence = 0;
+
+            for (int i = 0; i < string.length(); i++) {
+                if (string.charAt(i) == c)
+                    lastOccurrence = i;
+            }
+            // optimize the 0 to instead be 'start'
+            return string.substring(0, lastOccurrence + 1);       // include the i'th element in the new string.
+        }
+}
+```
+
+
+
+---
+
+## 2. Greedy solution - O(n)
+
+This table (that shows the input string as an array) should be referenced when reading the solution.
+
+a | b | a | b | c | b | a | c | a | d | e  | f  | e  | g  | d  | e  | h  | i  | j  | h  | k  | l  | i  | j  | 
+  --- |   --- |   --- |   --- |   --- |   --- |   --- |   --- |   --- |   --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- |    --- | 
+0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | LastIdx (8) | 9 | 10 | 11 | 12 | 13 | 14 | LastIdx (15) | 16 | 17 | 18 | 19 | 20 | 21 | 22 | LastIdx (23) | 
+
+
+This solution is a very efficient and element solution. It does two passes each of O(n) time which results in a time complexity of O(n).
+The general idea is to:
+ 1. Make one pass through the string and record the **last** index for each letter. Use a HashMap to do this. In our case the lastIndex
+for `a` will be `8` as noted in the above table.
+
+2. Make a second pass that will go through the string. First it will store the last index of that char. We now with confidence that we can break our string until we **at least**
+reach that `lastIndex`. However, there may be an even **further** index between `firstIndex` and current `lastIndex`. If so we have to **expand** our string. So we continue
+looping and getting the last index for each char. If there is a further index then our current `lastIndex` then we update `lastIndex` to be equal to the current
+ furthest index. We continue looping until `i` (the index of the element we are up to) is equal to `lastIndex`. Because then we know we reached the end. (Again reference the above table.)
+ We can now grab the length of the current string partition by easily taking the difference between `firstIndex` and `lastIndex`.
+
+
+```java
+class Solution {
+    public List<Integer> partitionLabels(String S) {
+        if(S == null || S.length() == 0){
+            return null;
+        }
+
+        // record the last index of the each char
+        Map<Character, Integer> indexMap = new HashMap<>();  
+
+        for(int i = 0; i < S.length(); i++){
+            indexMap.put(S.charAt(i), i);
+        }
+
+        // second pass to get the partitions
+        List<Integer> list = new ArrayList<>();
+        int lastIndex = 0;
+        int firstIndex = 0;
+        for(int i = 0; i < S.length(); i++){
+            lastIndex = Math.max(lastIndex, indexMap.get(S.charAt(i)));
+            if(lastIndex == i){
+                list.add(lastIndex - firstIndex + 1);
+                firstIndex = lastIndex + 1;
+            }
+        }
+        return list;
+    }
+}
+```</p>
+
+<h2>BLASSSSS</h2>
+    <li><a href="/leetcode_posts/leetcode-sum-of-root-to-leaf-binary-numbers.html">Leetcode Partition Labels - 2 Solutions.</a>
+    </li>
+    <p>##   Sum of Root To Leaf Binary Numbers
+
+The genral idea of this solution is to get a list of **all** the paths.
+Then for each path get the sum in decimal by using the helper method bin_to_dec() and add path sum to totalSum
+then return totalSum
+
+```java
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        
+        ArrayList<String> pathList = new ArrayList<>();
+        preorder(root, "", pathList);
+        
+        int totalSum = 0;
+        for (String path : pathList) {
+            totalSum += bin_to_dec(path);
+        }
+        
+        return totalSum;
+    }
+
+    
+    public void preorder(TreeNode node, String path, ArrayList<String> pathList) {
+        if (node == null) return;
+        if (node.left == null && node.right == null) pathList.add(path + node.val);
+        preorder(node.left, path + node.val, pathList);
+        preorder(node.right, path + node.val, pathList);
+    }
+    
+    private int bin_to_dec(String path) {
+        int total = 0;
+        int pathLength = path.length();
+        for (int i = 0; i < pathLength; i++) {
+            total +=  Character.getNumericValue(path.charAt(i)) * Math.pow(2, (pathLength - 1 - i) );
+        }
+        
+        return total;
+    }
+}
+```
+Let's make a slight improvement on the above code. Instead of using **all** that extra space to store the list
+and then also looping over the entire list to call bin_to_dec() we will replace the list with a running 
+sum:
+
+```java
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        return preorder(root, "", 0);
+    }
+
+    
+    public int preorder(TreeNode node, String path, int num) {
+        if (node == null) return 0;
+        if (node.left == null && node.right == null) 
+            return bin_to_dec(path + node.val);
+        int pathsToLeft = preorder(node.left, path + node.val, num);
+        int pathsToRight = preorder(node.right, path + node.val, num);
+        return pathsToLeft + pathsToRight;
+    }
+    
+    private int bin_to_dec(String path) {
+        int result = 0;
+        int pathLength = path.length();
+        for (int i = 0; i < pathLength; i++) {
+            result +=  Character.getNumericValue(path.charAt(i)) * Math.pow(2, (pathLength - 1 - i) );
+        }
+        return result;
+    }
+}
+```
+Just to make the `preorder()` a bit leaner let's replace
+```java
+int pathsToLeft = preorder(node.left, path + node.val, num);
+int pathsToRight = preorder(node.right, path + node.val, num);
+return pathsToLeft + pathsToRight;
+```
+with 
+```java
+return preorder(node.left, path + node.val, num) + preorder(node.right, path + node.val, num);
+```
+
+We saved some space and improved the length of the code. However there are still some inefficiences
+.
+1. We are constantly rebuilding a string to keep the path.
+2. We are looping through the entire path so that we can convert binary to decimal.
+
+
+Let's fix these inefficiencies! Instead of looping over the entire
+
+If we can convert binary to decimal another way then we don't need the helper method at all and we don't either need the path.
+Instead of converting bin to dec by finding the unit place of the value and then multiplying it by the appropriate power of 2.
+
+We go down the tree keeping a running value of the path. When we hit a leaf we return that val and then continue our recursive method
+with the value that it was before this leaf.
+I found this better solution [here](https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/discuss/270025/JavaC%2B%2BPython-Recursive-Solution). We can keep a running total of the decimal sum for this path by simply multipying running val
+ by 2 and then adding the current root val `val * 2 + root.val`
+
+ We end up with a solution that has a Time complexity of O(N) since we need to touch every node in the tree and Space complexity of O(H) for recursion
+ since at any given point in time we have a linear call stack that doesn't exceed height of the tree.
+```java
+class Solution {
+    public int sumRootToLeaf(TreeNode root) {
+        return dfs(root, 0);
+    }
+    
+    private int dfs(TreeNode root, int val){
+        if(root == null) return 0;
+        val = val * 2 + root.val;
+        if(root.left == null && root.right == null){
+            return val;
+        } else {
+            return dfs(root.left, val) + dfs(root.right, val);
+        }
+    }
+}
+```</p>
+
+</ul>
+
+
+
+
+    <div class="col-sm-4 py-2">
+        <div class="card mb-3 bg-light" style="max-width: 20rem;">
+            <div class="card-header text-center">
+                <strong>Leetcode: Length of Last Word</strong>
+            </div>
+            <div class="card-body">
+                <p>
+                    This article shows and explains in depth a solution to the Leetcode Length of Last Word problem.
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="posts/leetcode-length-of-last-word.html"
+                    target="_blank" class="btn btn-block btn-outline-info">View Article</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Scroll button -->
+    <button id="topButton" class="btn btn-info" onclick="toTheTop()"> <i class="fas fa-angle-up"></i></button>
+
+    <!-- Load scripts after html -->
+    <!-- Bootstrap, jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- DarkReader CDN -->
+    <script src="https://unpkg.com/darkreader@4.7.15/darkreader.js"></script>
+
+
+    <!-- This will get and display the ip of a visitor -->
+    <script>
+        /*
+        // Can only use formspree Ajax when upgrade plan
+        function setFormValue(visitorIp) {
+            var currentTime = new Date().toDateString();
+            $.ajax({
+                url: "https://formspree.io/mjvgzwqv", 
+                crossDomain: true,
+                method: "POST",
+                data: {message: "You have a visitor at: " + currentTime + " with an ip of: " + visitorIp},
+                dataType: "json"
+            }); 
+        };
+        */
+
+
+        $(document).ready(function () {
+            var visitorIp;
+            // 1) Get visitors IP from CloudFlare
+            $.get('https://www.cloudflare.com/cdn-cgi/trace', function (data) {
+                var ipRow = data.split("\n")[2]; // this is the ip row
+                visitorIp = ipRow.split("=")[1];  // actual IP
+
+                // 2) Display Greeting to visitor
+                $('#msgs').html("<div class='alert alert-success text-center container alert-dismissible'><strong>Welcome! it's nice to see you, </strong> " + '<a href="https://www.google.com/search?q=myIp">' + visitorIp + '</a>' + "</div>");
+                // 3) Auto fade Greeting away after
+                $(".alert-dismissible").fadeTo(5000, 500).slideUp(500, function () {
+                    $(".alert-dismissible").alert('close');
+                });
+                // setFormValue(visitorIp); //Can oonly send this ajax form when upgrade plan.
+            })
+        });
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("topButton").style.display = "block";
+            } else {
+                document.getElementById("topButton").style.display = "none";
+            }
+
+        }
+        // Scroll to the top on button click
+        function toTheTop() {
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+        };
+
+        // Dark mode
+        var toggle = false;
+        function darkModeToggle() {
+            toggle ? DarkReader.disable() : DarkReader.enable({ brightness: 100, contrast: 90, sepia: 10 });
+            toggle = !toggle;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +18,9 @@
     <link rel="stylesheet" href="./main.css">
 
 
-    <title>Aaron Farntrog</title>
+    <!-- <title>Aaron Farntrog</title> -->
+    <title>Leetcode Contains Duplicate 3 - 3 Solutions. | afarntrog.com</title>
+    
 </head>
 
 <body class="bg-light">
@@ -389,162 +393,218 @@
     <!--End Row-->
     </div>
 
+    <h3 id="220-contains-duplicate-iii"><a href="https://leetcode.com/problems/contains-duplicate-iii/">220. Contains Duplicate III</a></h3>
 
-    <!-- BLOG: When I add a blog. container heading -->
-    <div class="container">
-        <div class=" row d-flex justify-content-center">
-            <div class="divider">
-                <hr>
-            </div>
-            <div class="divider">
-                ARTICLES
-            </div>
-            <div class="divider">
-                <hr>
-            </div>
+<p>Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums[i] and nums[j] is at most t and the absolute difference between i and j is at most k.</p>
 
-            <!-- End row -->
+<p>Example 1:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [1,2,3,1], k = 3, t = 0
+Output: true
+</code></pre></div></div>
+<hr />
+
+<p>Let’s try the easy solution first.</p>
+
+<h2 id="1-brute-force-solution">1. Brute force solution</h2>
+
+<p>This is definitely the simplest way to solve it but the most inefficient. We can simply create a nested <code class="language-plaintext highlighter-rouge">for loop</code> and check each value in the array against every other value
+in the array. At each iteration we check if:</p>
+<ol>
+  <li>The two values have indexes that have an absolute difference between them that are at most k</li>
+  <li>The two values themselves have an absolute difference between them that are at most t</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>  <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span> <span class="o">(</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Note we can optimize this a bit by not looping over the <strong>entire</strong> array. Instead, we can start form i + 1 because we already tested the abs() value earlier.
+(Math.abs(nums[i] - nums[j] ) is the same as Math.abs(nums[j] - nums[i] )) And we do <code class="language-plaintext highlighter-rouge">i + 1</code> because we want to exclude <code class="language-plaintext highlighter-rouge">i</code> itself since the index must be distinct.
+However, this still results in O(n^2). 
+We can do much better with the next solution.</p>
+
+<h2 id="2-sliding-window-solution">2. Sliding window solution</h2>
+
+<p>We will keep a small window of size k and check those k elements if there contains the correct value. 
+The elements will be stored in a BST for O(log k) lookup.</p>
+
+<p>We will maintain a binary search tree that never exceeds the value of k (our sliding window).
+A BST has a search complexity of log k where k is the total number of nodes in the BST.</p>
+
+<p>Summary of what we will do:
+We will loop over the array and check all the values, that have an index that is within <code class="language-plaintext highlighter-rouge">k</code> indexes from the current index, if any of those values have an 
+absolute difference from the current value that is <code class="language-plaintext highlighter-rouge">&lt;= t</code> we will <code class="language-plaintext highlighter-rouge">return true</code>.</p>
+
+<p>For each value in the array we do the following:
+1) Get the closest value that is smaller than this current value.
+2) Get the closest value that is larger than this current value.</p>
+
+<p>This essentially searches in both directions of the array. Remember, we are only searching within the <code class="language-plaintext highlighter-rouge">k</code> bound. Our tree will <strong>never</strong> exceed k nodes. Because we only
+want to look at values to the left and right of the current value if those values have an <code class="language-plaintext highlighter-rouge">index &lt;= k</code>.</p>
+
+<p>If there is a value in the treeSet that has an absolute difference from current value that is <code class="language-plaintext highlighter-rouge">&lt;= t</code> then we return true. Because, again, we already know that all the values in the BST are within <code class="language-plaintext highlighter-rouge">k</code> distance.
+If there does not exist a value in the treeSet that has an absolute difference from current value that is <code class="language-plaintext highlighter-rouge">&lt;= t</code> then we add this current element to the <code class="language-plaintext highlighter-rouge">treeSet</code>
+Then we adjust our sliding window to make sure our <code class="language-plaintext highlighter-rouge">treeSet</code> does not exceed <code class="language-plaintext highlighter-rouge">k</code>. Remove the furthest element if it does exceed <code class="language-plaintext highlighter-rouge">k</code>.</p>
+
+<p>Let’s take an example and walk through it:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums = [3,5,7,8], k = 2, t = 1
+Output: true
+</code></pre></div></div>
+
+<p>We begin looping through the array and set <code class="language-plaintext highlighter-rouge">val</code> to 3. Since there are no values in the <code class="language-plaintext highlighter-rouge">treeSet</code>, <code class="language-plaintext highlighter-rouge">ceil</code> and <code class="language-plaintext highlighter-rouge">floor</code> are both <code class="language-plaintext highlighter-rouge">null</code>.
+So we add 3 into <code class="language-plaintext highlighter-rouge">treeSet</code> and continue the loop.</p>
+
+<p>Our <code class="language-plaintext highlighter-rouge">treeSet</code> currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-3.png" alt="treeImage" /></p>
+
+<p>Now <code class="language-plaintext highlighter-rouge">val</code> is 5. <code class="language-plaintext highlighter-rouge">floor</code> is 3 and <code class="language-plaintext highlighter-rouge">ceil</code> is <code class="language-plaintext highlighter-rouge">null</code> Since <code class="language-plaintext highlighter-rouge">5 - 3 is 2</code> this is not <code class="language-plaintext highlighter-rouge">&lt;= t</code> so we add 5 to <code class="language-plaintext highlighter-rouge">treeSet</code> and continue.</p>
+
+<p>Our <code class="language-plaintext highlighter-rouge">treeSet</code> currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-3-5.png" alt="treeImage" /></p>
+
+<p>now <code class="language-plaintext highlighter-rouge">val</code> is 7. <code class="language-plaintext highlighter-rouge">floor</code> is 5 and <code class="language-plaintext highlighter-rouge">ceil</code> is <code class="language-plaintext highlighter-rouge">null</code>. Again, since this does not result in ` &lt;= t<code class="language-plaintext highlighter-rouge"> we add 7 to </code>treeSet<code class="language-plaintext highlighter-rouge"> and continue
+Our </code>treeSet` currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-3-5-7.png" alt="treeImage" /></p>
+
+<p>Notice that our <code class="language-plaintext highlighter-rouge">treeSet</code> is larger than <code class="language-plaintext highlighter-rouge">k</code>! So we <strong>remove</strong> the <code class="language-plaintext highlighter-rouge">i - k</code> element, or the oldest added one.
+Our updated <code class="language-plaintext highlighter-rouge">treeSet</code> currently looks like this:</p>
+
+<p><img src="Contains_Duplicate_3/tree-5-7.png" alt="treeImage" /></p>
+
+<p>now <code class="language-plaintext highlighter-rouge">val</code> is 8. <code class="language-plaintext highlighter-rouge">floor</code> is 7 and <code class="language-plaintext highlighter-rouge">ceil</code> is again <code class="language-plaintext highlighter-rouge">null</code>. Since <code class="language-plaintext highlighter-rouge">8 - 7 is 1</code> this is <code class="language-plaintext highlighter-rouge">&lt;= t</code> so we <code class="language-plaintext highlighter-rouge">return true</code> and we’re done.</p>
+
+<p>note we don’t need to use Math.abs like in the brute force solution. This is because with <code class="language-plaintext highlighter-rouge">floor</code> we are getting the value that is the closest value
+ to nums[i] that is still smaller than nums[i]. Therefore, we know that it will not return a negative since we will do (nums[i] - floor). The 
+ same applies just in reverse when checking if (ceil - nums[i]) is in the BST.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="k">if</span><span class="o">(</span><span class="n">nums</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>  <span class="c1">// this is basic check to make sure input is valid.</span>
+
+            <span class="nc">TreeSet</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">treeSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;();</span>
+
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="kt">long</span> <span class="n">val</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>     <span class="c1">// cast to long because out TreeSet is of type Long.</span>
+
+                <span class="nc">Long</span> <span class="n">floor</span> <span class="o">=</span> <span class="n">treeSet</span><span class="o">.</span><span class="na">floor</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+                <span class="nc">Long</span> <span class="n">ceil</span> <span class="o">=</span> <span class="n">treeSet</span><span class="o">.</span><span class="na">ceiling</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span> <span class="o">(</span><span class="n">floor</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">val</span> <span class="o">-</span> <span class="n">floor</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">ceil</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">ceil</span> <span class="o">-</span> <span class="n">val</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="o">)</span> <span class="o">)</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+                <span class="n">treeSet</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="o">)</span>
+                    <span class="n">treeSet</span><span class="o">.</span><span class="na">remove</span><span class="o">((</span><span class="kt">long</span><span class="o">)</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">]);</span>  <span class="c1">// remember to cast to long.</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>So this is O(n log k) because we are (maybe) going through the entire array and for each val in the array we do a BST lookup which is O(log k) 
+ so this results in O(n log k).</p>
+
+<p>O(n log k) is certainly better than O(n^2), however, can we do better? Well, yes. We can solve this in O(n) using Buckets.</p>
+
+<h2 id="3-bucket-solution">3. Bucket solution:</h2>
+
+<p>The general idea is to create buckets of values that are within t range.
+The code below is well commented and variables are well named. Although the concept may be difficult this code should be easy to read and understand.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">containsNearbyAlmostDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// There cannot be a negative absolute distance.</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>    
+
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="n">buckets</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+
+        <span class="c1">// we add 1 to avoid the case where t == 0. </span>
+        <span class="c1">// Because if t == 0 then we will get "ArithmeticException: / by zero" Exception when dividing by t later on when we get bucketID.</span>
+        <span class="kt">long</span> <span class="n">bucketWidth</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> 
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">long</span> <span class="n">currNum</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>   <span class="c1">// we must start the "base" from Integer.MIN_VALUE so that we can handle negative numbers. Do not focus on this right now.</span>
+            <span class="kt">long</span> <span class="n">bucketID</span> <span class="o">=</span> <span class="n">currNum</span> <span class="o">/</span> <span class="n">bucketWidth</span><span class="o">;</span>  <span class="c1">// This will tell us which bucket to place the currNum into. </span>
+
+            <span class="c1">// Each "bucket" will only ever have one value (unlike bucket sort)</span>
+            <span class="c1">// if **this** value is already in the bucket than we know that currNum is definitely within t distance of bucketNum </span>
+            <span class="c1">// additionally, if it is in the bucket then it is within k index range. so we found a match.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buckets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">bucketID</span><span class="o">))</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+            <span class="c1">// Next 2 `if` checks explained: </span>
+            <span class="c1">// Some numbers with differences less than `t` __may__ be put into different buckets. In such cases, however, they can **only** be in **immediate** neighboring buckets.</span>
+
+            <span class="c1">// if there is a bucket to the **immediate** left then check to see if that value in that bucket is within "absolute difference" distance (t) from the current value</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buckets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">currNum</span> <span class="o">-</span> <span class="n">buckets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">-</span> <span class="mi">1</span><span class="o">))</span> <span class="o">&lt;</span> <span class="n">bucketWidth</span><span class="o">)</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+            <span class="c1">// if there is a bucket to the **immediate** right then check to see if that value in that bucket is within "absolute difference" distance (t) from the current value</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">buckets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">currNum</span> <span class="o">-</span> <span class="n">buckets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">bucketID</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span> <span class="o">&lt;</span> <span class="n">bucketWidth</span><span class="o">)</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+            <span class="c1">// add currNum to our buckets.</span>
+            <span class="n">buckets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">bucketID</span><span class="o">,</span> <span class="n">currNum</span><span class="o">);</span>
+
+            <span class="c1">// Remove the element that is not within k index distance:</span>
+            <span class="c1">// if i &gt;= k then we do not want to be looking at this value anymore since it is out of index range (k) so we will remove it. </span>
+            <span class="c1">// We are getting the bucketID like we did earlier. Just we are doing i - k so that we get the element that is k distance from the current one, since that's the one out of range.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">long</span> <span class="n">furthestNumBucketID</span> <span class="o">=</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">]</span> <span class="o">-</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">)</span> <span class="o">/</span> <span class="n">bucketWidth</span><span class="o">;</span>
+                <span class="n">buckets</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">furthestNumBucketID</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This solution has a time complexity of O(n). Since we only iterate through the array at max once and the lookup and inserts into the HashMap (<code class="language-plaintext highlighter-rouge">buckets</code>) is constant time O(1).</p>
+
+<p>We covered 3 solutions. We did a brute force that runs in O(n^2) we then covered Sliding window solution that uses a BST that runs in (n log k) time and we finished with
+the Bucket solution that runs in O(n) time. The more efficient they are the more complex they are…</p>
+
+
+
+
+
+    <div class="col-sm-4 py-2">
+        <div class="card mb-3 bg-light" style="max-width: 20rem;">
+            <div class="card-header text-center">
+                <strong>Leetcode: Length of Last Word</strong>
+            </div>
+            <div class="card-body">
+                <p>
+                    This article shows and explains in depth a solution to the Leetcode Length of Last Word problem.
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="posts/leetcode-length-of-last-word.html"
+                    target="_blank" class="btn btn-block btn-outline-info">View Article</a>
+            </div>
         </div>
-        <!-- End container -->
     </div>
 
-    <!-- Projects container -->
-    <div class="container" id="blog">
-
-        <div class="row">
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>Bloom Filters</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            An article explaining the problems encounterd before bloom filters. Some attempted
-                            solutions. Problems with those attempted solutions. Finally, bloom filters and their
-                            benefits.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://docs.google.com/document/d/183JE9k_ZXYOg1LwtCvBPLrRmc5t-ZmXVhRroJhMmHZo/edit?usp=sharing"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>ACM newsletter</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            Contributed article to the newsletter for Touro College Student Chapter of the Association
-                            for Computing Machinery (ACM)
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://las.touro.edu/media/schools-and-colleges/lander-college-for-arts-and-sciences/documents/ACM_Publication_2020.pdf"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>Big Data and Hadoop</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            An article explaining the challenges dealing with big data. We discuss Apache Hadoop as a
-                            solution. Explaing the hadoop ecosystem and how it works in the backend.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://docs.google.com/document/d/1y-a4lkdos9UyTJubnXyW_8OIkSJ8ZsLvHm3Y_Kfnlt0/edit?usp=sharing"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>Leetcode: Contains Duplicate III</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            This article shows and explains in depth 3 distinct solutions to the Leetcode Contains Duplicate III problem.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="posts/leetcode-contains-duplicate-3.html"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>Leetcode: Partition Labels</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            This article shows and explains in depth 2 distinct solutions to the Leetcode Partition Labels problem.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="posts/leetcode-partition-labels.html"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>Leetcode: House Robber</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            This article shows and explains in depth 2 distinct solutions to the Leetcode House Robber problem.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="posts/leetcode-partition-labels.html"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-4 py-2">
-                <div class="card mb-3 bg-light" style="max-width: 20rem;">
-                    <div class="card-header text-center">
-                        <strong>Leetcode: Length of Last Word</strong>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            This article shows and explains in depth a solution to the Leetcode Length of Last Word problem.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="posts/leetcode-length-of-last-word.html"
-                            target="_blank" class="btn btn-block btn-outline-info">View Article</a>
-                    </div>
-                </div>
-            </div>
 
 
 
 
-        </div>
-
-        <!--End Row-->
-    </div>
 
     <!-- Scroll button -->
     <button id="topButton" class="btn btn-info" onclick="toTheTop()"> <i class="fas fa-angle-up"></i></button>
