@@ -91,24 +91,24 @@ So we add 3 into `treeSet` and continue the loop.
 
 Our `treeSet` currently looks like this:
  
- ![treeImage](Contains_Duplicate_3/tree-3.png)
+ ![treeImage](../Contains_Duplicate_3/tree-3.png)
  
 
 Now `val` is 5. `floor` is 3 and `ceil` is `null` Since `5 - 3 is 2` this is not `<= t` so we add 5 to `treeSet` and continue.
 
 Our `treeSet` currently looks like this:
  
- ![treeImage](Contains_Duplicate_3/tree-3-5.png)
+ ![treeImage](../Contains_Duplicate_3/tree-3-5.png)
  
 now `val` is 7. `floor` is 5 and `ceil` is `null`. Again, since this does not result in ` <= t` we add 7 to `treeSet` and continue
 Our `treeSet` currently looks like this:
 
- ![treeImage](Contains_Duplicate_3/tree-3-5-7.png)
+ ![treeImage](https://aaronfarntrog.com/Contains_Duplicate_3/tree-3.png)
  
 Notice that our `treeSet` is larger than `k`! So we **remove** the `i - k` element, or the oldest added one.
 Our updated `treeSet` currently looks like this:
 
- ![treeImage](Contains_Duplicate_3/tree-5-7.png)
+ ![treeImage](../Contains_Duplicate_3/tree-5-7.png)
  
 now `val` is 8. `floor` is 7 and `ceil` is again `null`. Since `8 - 7 is 1` this is `<= t` so we `return true` and we're done.
 
