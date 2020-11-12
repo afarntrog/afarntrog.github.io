@@ -27,7 +27,7 @@ A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits 
 ---
 
 ## 1. Brute force - first thought. 
-This is a **terrible** solution but I am writing it here because it was my first thought. You should probably skip to bottom solution.
+This is _not a great_ solution but I am writing it here because it was my first thought. You should probably skip to bottom solution.
 
 The general idea:
 
@@ -35,12 +35,15 @@ The general idea:
    You begin by finding the last occurrence of the first letter in the original string.
    Then partition the string by that last occurrence. You should now have two strings: a left partition, and a right partition.
    Let us handle the left partition. Although you found the last occurrence of the first letter, the left partition may contain other letters that are **also** in the right half.
+   
    So we must **expand** our left string to include those letters. 
    After we partition the left side, we add all of the `leftString` chars into the `charSet`.
    This allows us to loop over the set and for each letter in the set we will **again** find that last occurrence and then partition the string.
    **If** this new partition is larger than our `leftString` then that means we must **expand** the left partition. So we **update** our left partition.
-   However, now there is a new problem: if we expand the left partition we may **introduce** a new letter that was **not** in the original `leftString` and therefore not in the current `charSet`.
+  
+  However, now there is a new problem: if we expand the left partition we may **introduce** a new letter that was **not** in the original `leftString` and therefore not in the current `charSet`.
    That means we will not be finding the last occurrence of the **new letter**.
+   
    So we have to **update** our hashset with any **new** letters that were introduced when we expanded our string.
    However, we **cannot** update our hashset while iterating over it without getting a `ConcurrentModificationException`.
    So we will introduce a `Stack` and then add **all** the `charSet` values into the stack.
