@@ -1,4 +1,9 @@
-# Class should have high cohesion. Classes should do one thing and one thing well.
+---
+layout: post
+title: Single Responsibility Principle
+---
+# Single Responsibility Principle
+> Classes should do one thing and one thing well. (Class should have high cohesion.)
 ### This allows for much easier reuse later on.
 
 ```python

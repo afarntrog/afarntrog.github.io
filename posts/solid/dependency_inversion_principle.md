@@ -1,3 +1,7 @@
+---
+layout: post
+title: Dependency Inversion
+---
 # Dependency Inversion
 ### The D in SOLID
 > Abstractions should not depend on details. **Details should depend on abstractions**.

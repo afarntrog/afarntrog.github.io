@@ -1,5 +1,14 @@
-# Open for extension but closed for modification.
+---
+layout: post
+title: Open Closed Principle
+---
+
+# Open Closed Principle
+> Classes should be Open for extension but Closed for modification.
+
+
 Back to our example.
+
 ```python
 class Order:
     items = []

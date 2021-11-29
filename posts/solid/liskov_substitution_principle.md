@@ -1,3 +1,7 @@
+---
+layout: post
+title: Liskov Substitution Principle
+---
 # Liskov Substitution Principle
 > Objects of a superclass shall be replaceable with objects of its subclasses without breaking the application
 

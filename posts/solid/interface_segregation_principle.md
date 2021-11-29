@@ -1,3 +1,7 @@
+---
+layout: post
+title: Interface Segregation Principle
+---
 # Interface Segregation Principle
 > Better to have multiple **specific** interfaces than one general interface.
 
